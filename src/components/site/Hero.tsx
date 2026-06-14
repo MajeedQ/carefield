@@ -128,7 +128,7 @@ export const Hero: React.FC = () => {
               
               {/* The slideshow image */}
               <img 
-                src={HIGHLIGHT_SLIDES[activeSlide].imageUrl} 
+                src={HIGHLIGHT_SLIDES[activeSlide].image_url} 
                 alt={HIGHLIGHT_SLIDES[activeSlide].title} 
                 className="w-full h-full object-cover select-none"
                 referrerPolicy="no-referrer"
