@@ -5,7 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: "Tajawal", "Cairo", system-ui, sans-serif;
+  --font-sans: "Noto Kufi Arabic", "Tajawal", system-ui, sans-serif;
+  --font-display: "IBM Plex Sans Arabic", "Noto Kufi Arabic", system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
