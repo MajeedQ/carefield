@@ -6,40 +6,54 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, CheckCircle2, ChevronRight, ChevronLeft } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { bannersQuery } from '@/lib/site-content';
 
-const HIGHLIGHT_SLIDES = [
+const DEFAULT_SLIDES = [
   {
-    type: 'banner',
+    id: 'd1',
     title: 'مركز مجال العناية',
     subtitle: 'شعار الثقة والأمان لأطفالنا',
-    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDtmrKHWruhd8B7jOPSXzUNaz0LSxp3ywigDxzGiXIrMGThLH_UtXSv_6M4mvqL-i7yDTFvdQGwSMApodmIPbTv3qX6kCX3GdwR52rIdgPCHgwgFGQfCsaTh7RzYQqqmefBQGsg0w2BvyfZAbTzvAQg-qvQMtgU9y3rSoX73gt0mZYwiA5lsKmiDOL7pO3r15YaQZWOdQ_AsgAolu7kmCjpHnyFWWjO2UVqaSS2GiIkNnyKNZiEEVIJFWlgrVqOjx0aUmpYlEKdyYSXVw',
+    image_url: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDtmrKHWruhd8B7jOPSXzUNaz0LSxp3ywigDxzGiXIrMGThLH_UtXSv_6M4mvqL-i7yDTFvdQGwSMApodmIPbTv3qX6kCX3GdwR52rIdgPCHgwgFGQfCsaTh7RzYQqqmefBQGsg0w2BvyfZAbTzvAQg-qvQMtgU9y3rSoX73gt0mZYwiA5lsKmiDOL7pO3r15YaQZWOdQ_AsgAolu7kmCjpHnyFWWjO2UVqaSS2GiIkNnyKNZiEEVIJFWlgrVqOjx0aUmpYlEKdyYSXVw',
     tag: 'بيئة متكاملة'
   },
   {
-    type: 'info',
+    id: 'd2',
     title: 'تأهيل طبي وسلوكي',
     subtitle: 'أحدث الأدوات لتدريب الأبطال',
-    imageUrl: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop',
+    image_url: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800&auto=format&fit=crop',
     tag: 'رعاية صحية'
   },
   {
-    type: 'trust',
+    id: 'd3',
     title: 'أنشطة حركية وتعليمية',
     subtitle: 'فصول مجهزة لتنمية المهارات',
-    imageUrl: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=800&auto=format&fit=crop',
+    image_url: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=800&auto=format&fit=crop',
     tag: 'أنشطة ترفيهية'
   }
 ];
 
 export const Hero: React.FC = () => {
+  const { data: banners = [] } = useQuery(bannersQuery(true));
+  const dbSlides = banners
+    .filter((b) => b.kind === 'image' && b.image_url)
+    .map((b) => ({
+      id: b.id,
+      title: b.title || '',
+      subtitle: b.subtitle || '',
+      image_url: b.image_url!,
+      tag: b.subtitle || ''
+    }));
+  const HIGHLIGHT_SLIDES = dbSlides.length > 0 ? dbSlides : DEFAULT_SLIDES;
   const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
+    if (HIGHLIGHT_SLIDES.length <= 1) return;
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % HIGHLIGHT_SLIDES.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, []);
+  }, [HIGHLIGHT_SLIDES.length]);
 
   const handleNext = () => {
     setActiveSlide((prev) => (prev + 1) % HIGHLIGHT_SLIDES.length);
@@ -114,7 +128,7 @@ export const Hero: React.FC = () => {
               
               {/* The slideshow image */}
               <img 
-                src={HIGHLIGHT_SLIDES[activeSlide].imageUrl} 
+                src={HIGHLIGHT_SLIDES[activeSlide].image_url} 
                 alt={HIGHLIGHT_SLIDES[activeSlide].title} 
                 className="w-full h-full object-cover select-none"
                 referrerPolicy="no-referrer"
