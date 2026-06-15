@@ -21,7 +21,8 @@ interface CmsCrudProps {
 
 export function CmsCrud({ table, queryKey, queryOpts, fields, title, primary }: CmsCrudProps) {
   const qc = useQueryClient();
-  const { data: rows = [], isLoading } = useQuery(queryOpts);
+  const { data: rowsRaw = [] as any[], isLoading } = useQuery<any[]>(queryOpts);
+  const rows = rowsRaw as any[];
   const [draft, setDraft] = useState<any | null>(null);
 
   const newRow = () => {
@@ -39,7 +40,7 @@ export function CmsCrud({ table, queryKey, queryOpts, fields, title, primary }: 
         const { error } = await (supabase.from(table as any) as any).update(payload).eq("id", d.id);
         if (error) throw error;
       } else {
-        const sort_order = ((rows as any[])[rows.length - 1]?.sort_order ?? 0) + 10;
+        const sort_order = (rows[rows.length - 1]?.sort_order ?? 0) + 10;
         const { error } = await (supabase.from(table as any) as any).insert({ ...payload, sort_order, active: true });
         if (error) throw error;
       }
@@ -67,7 +68,7 @@ export function CmsCrud({ table, queryKey, queryOpts, fields, title, primary }: 
   });
 
   const moveSort = (idx: number, dir: -1 | 1) => {
-    const list = [...(rows as any[])];
+    const list = [...rows];
     const target = idx + dir;
     if (target < 0 || target >= list.length) return;
     const a = list[idx], b = list[target];
@@ -94,7 +95,7 @@ export function CmsCrud({ table, queryKey, queryOpts, fields, title, primary }: 
         <div className="text-center py-8 text-slate-400 text-sm border-2 border-dashed border-slate-200 rounded-xl">لا يوجد عناصر</div>
       ) : (
         <div className="space-y-2">
-          {(rows as any[]).map((r, idx) => (
+          {rows.map((r, idx) => (
             <div key={r.id} className="bg-white rounded-xl border border-blue-100 p-3 flex items-center gap-3">
               <div className="flex flex-col gap-0.5">
                 <button onClick={() => moveSort(idx, -1)} disabled={idx === 0} className="text-slate-400 hover:text-[#002c6d] disabled:opacity-30"><ChevronUp className="w-3.5 h-3.5" /></button>
