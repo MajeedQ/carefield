@@ -171,3 +171,50 @@ function DraftForm({ draft, setDraft, fields, onSave, onCancel, saving }: any) {
     </div>
   );
 }
+
+function ImageField({ field, value, onChange }: { field: CmsField; value: string; onChange: (v: string) => void }) {
+  const [uploading, setUploading] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+  const onFile = async (file: File | null) => {
+    if (!file) return;
+    setErr(null);
+    setUploading(true);
+    try {
+      const { url } = await uploadMedia(file);
+      onChange(url);
+    } catch (e: any) {
+      setErr(e?.message ?? "فشل الرفع");
+    } finally {
+      setUploading(false);
+    }
+  };
+  return (
+    <div className="block text-xs space-y-2">
+      <span className="font-bold mb-1 block">{field.label}</span>
+      {value ? (
+        <div className="relative">
+          <img src={value} alt="" className="w-full h-40 object-cover rounded-lg border border-slate-200" />
+          <button type="button" onClick={() => onChange("")} className="absolute top-2 left-2 bg-white/90 hover:bg-white text-red-600 rounded-full p-1.5 shadow">
+            <Trash2 className="w-4 h-4" />
+          </button>
+        </div>
+      ) : (
+        <label className="flex flex-col items-center justify-center gap-1.5 border-2 border-dashed border-slate-200 rounded-lg p-6 cursor-pointer hover:border-[#002c6d] hover:bg-blue-50/50 transition">
+          {uploading ? <Loader2 className="w-5 h-5 animate-spin text-[#002c6d]" /> : <Upload className="w-5 h-5 text-[#002c6d]" />}
+          <span className="text-xs text-slate-600">{uploading ? "جاري الرفع..." : "اضغط أو اسحب صورة هنا"}</span>
+          <span className="text-[10px] text-slate-400">PNG / JPG / WEBP</span>
+          <input type="file" accept="image/*" className="hidden" onChange={(e) => onFile(e.target.files?.[0] ?? null)} disabled={uploading} />
+        </label>
+      )}
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="أو ألصق رابط الصورة هنا"
+        dir="ltr"
+        className="w-full rounded-lg border border-slate-200 px-3 py-2 text-xs"
+      />
+      {err && <p className="text-[11px] text-red-600">{err}</p>}
+    </div>
+  );
+}
