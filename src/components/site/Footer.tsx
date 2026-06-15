@@ -26,7 +26,8 @@ export const Footer: React.FC = () => {
   const tiktokUrl = getSocialUrl(config.socialMedia.tiktok, 'https://tiktok.com/@');
   const linkedinUrl = getSocialUrl(config.socialMedia.linkedin || 'company/carefieldcenter', 'https://linkedin.com/in/');
   const emailUrl = `mailto:${config.socialMedia.email || 'Care.f.center@gmail.com'}`;
-  const whatsappUrl = `https://wa.me/${String(config.socialMedia.whatsapp || '966560098881').replace(/\+/g, '').trim()}`;
+  const waRaw = String(config.socialMedia.whatsapp || '966560098881').trim();
+  const whatsappUrl = waRaw.startsWith('http') ? waRaw : `https://wa.me/${waRaw.replace(/\+/g, '')}`;
 
   return (
     <footer id="main-footer" className="bg-[#d3e4fe] border-t border-[#775a19]/20 pt-12 pb-8 px-4 md:px-8 mt-auto text-center">
