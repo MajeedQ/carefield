@@ -100,6 +100,7 @@ export interface SocialMedia {
   phone1: string;
   phone2: string;
   whatsapp: string;
+  whatsappMessage: string;
   twitter: string;
   instagram: string;
   snapchat: string;
