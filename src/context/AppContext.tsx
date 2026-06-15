@@ -86,6 +86,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const { data: services = [] } = useQuery(servicesQuery(true));
   const { data: faqs = [] } = useQuery(faqsQuery(true));
   const { data: wide = [] } = useQuery(wideBannersQuery(true));
+  const { data: stats = [] } = useQuery(heroStatsQuery(true));
 
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
