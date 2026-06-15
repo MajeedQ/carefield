@@ -107,7 +107,7 @@ function AdminPage() {
             fields={[
               { key: "title", label: "العنوان" },
               { key: "subtitle", label: "العنوان الفرعي", type: "textarea" },
-              { key: "image_url", label: "رابط الصورة" },
+              { key: "image_url", label: "صورة الشريحة", type: "image" },
               { key: "tag", label: "وسم (مثل: رعاية صحية)" },
             ]}
           />
@@ -119,7 +119,7 @@ function AdminPage() {
             fields={[
               { key: "title", label: "العنوان" },
               { key: "subtitle", label: "العنوان الفرعي", type: "textarea" },
-              { key: "image_url", label: "رابط الصورة" },
+              { key: "image_url", label: "صورة البانر", type: "image" },
               { key: "tag", label: "وسم" },
               { key: "link_url", label: "رابط الزر (مثل #lead-form)" },
               { key: "button_text", label: "نص الزر" },
