@@ -1,92 +1,80 @@
-import { useQuery } from "@tanstack/react-query";
-import { motion, AnimatePresence } from "motion/react";
-import { Award } from "lucide-react";
-import { useEffect, useState } from "react";
-import { bannersQuery } from "@/lib/site-content";
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import React from 'react';
+import { Megaphone, ArrowLeft } from 'lucide-react';
+import { useApp } from '@/context/AppContext';
 
 export const RegistrationBanner: React.FC = () => {
-  const { data: banners = [] } = useQuery(bannersQuery(true));
-  const textBanners = banners.filter((b) => b.kind === "text");
-  const [idx, setIdx] = useState(0);
+  const { config } = useApp();
+  
+  if (!config.announcement || !config.announcement.enabled) return null;
 
-  useEffect(() => {
-    if (textBanners.length <= 1) return;
-    const t = setInterval(() => setIdx((i) => (i + 1) % textBanners.length), 6000);
-    return () => clearInterval(t);
-  }, [textBanners.length]);
+  const text = config.announcement.text || '';
+  const linkUrl = config.announcement.linkUrl || '';
+  const bg = config.announcement.backgroundColor || '#fffbeb';
+  const color = config.announcement.textColor || '#78350f';
 
-  // Fallback default if nothing in DB
-  if (textBanners.length === 0) {
-    return (
-      <div className="bg-amber-100 text-[#775a19] border-b border-amber-200/50">
-        <div className="max-w-7xl mx-auto px-4 py-3 md:py-4 flex flex-col md:flex-row items-center justify-center gap-3 text-center">
-          <motion.div
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className="flex items-center gap-1 bg-amber-500/10 px-3 py-1 rounded-full text-xs font-bold tracking-wide border border-amber-500/20"
-          >
-            <Award className="w-3.5 h-3.5" />
-            <span>تنبيه التسجيل</span>
-          </motion.div>
-          <p className="font-medium text-sm md:text-base leading-relaxed">
-            يبدأ التسجيل للعام التأهيلي الجديد <strong>1448هـ</strong> يوم الأحد{" "}
-            <strong>21/06/2026</strong> وينتهي يوم الخميس <strong>16/07/2026</strong>
-          </p>
-        </div>
-      </div>
-    );
-  }
+  // Determine marquee speed duration in seconds
+  const speedSec = 
+    config.announcement.speed === 'fast' 
+      ? 15 
+      : config.announcement.speed === 'slow' 
+        ? 45 
+        : 30; // normal
 
-  const b = textBanners[idx % textBanners.length];
   return (
-    <div
-      className="border-b transition-colors"
-      style={{
-        background: b.bg_color || "#fef3c7",
-        color: b.text_color || "#775a19",
-        borderColor: "rgba(0,0,0,0.06)",
-      }}
+    <div 
+      id="registration-banner" 
+      style={{ backgroundColor: bg, color: color }}
+      className="relative overflow-hidden w-full border-b border-black/5 py-3 select-none flex items-center z-40"
     >
-      <div className="max-w-7xl mx-auto px-4 py-3 md:py-4 flex flex-col md:flex-row items-center justify-center gap-3 text-center min-h-[56px]">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={b.id}
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
-            transition={{ duration: 0.4 }}
-            className="flex flex-col md:flex-row items-center gap-3"
-          >
-            {b.title && (
-              <span className="flex items-center gap-1 bg-black/5 px-3 py-1 rounded-full text-xs font-bold border border-black/10">
-                <Award className="w-3.5 h-3.5" /> {b.title}
-              </span>
-            )}
-            {b.body && (
-              <p className="font-medium text-sm md:text-base leading-relaxed">
-                {b.link_url ? (
-                  <a href={b.link_url} className="hover:underline">
-                    {b.body}
-                  </a>
-                ) : (
-                  b.body
-                )}
-              </p>
-            )}
-          </motion.div>
-        </AnimatePresence>
-        {textBanners.length > 1 && (
-          <div className="flex gap-1">
-            {textBanners.map((_, i) => (
-              <span
-                key={i}
-                className={`w-1.5 h-1.5 rounded-full ${
-                  i === idx % textBanners.length ? "bg-current" : "bg-current/30"
-                }`}
-              />
-            ))}
-          </div>
-        )}
+      {/* Custom Keyframes Injector */}
+      <style>{`
+        @keyframes marquee-rtl {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(50%, 0, 0); }
+        }
+        .animate-marquee-rtl {
+          animation: marquee-rtl ${speedSec}s linear infinite;
+        }
+      `}</style>
+
+      {/* Static Label Side Badge (Gives it an official editorial news feel) */}
+      <div 
+        className="absolute right-0 top-0 bottom-0 z-20 px-4 md:px-5 flex items-center gap-1.5 font-bold text-xs"
+        style={{ backgroundColor: bg, color: color }}
+      >
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <Megaphone className="w-3.5 h-3.5 shrink-0" />
+        <span className="text-[11px] tracking-wide font-black border-l pl-2 pr-1 border-black/10">عاجل</span>
+      </div>
+
+      {/* Loop Container */}
+      <div className="w-full overflow-hidden flex text-xs md:text-sm font-bold pr-24">
+        <div className="animate-marquee-rtl whitespace-nowrap flex gap-12 text-right justify-start">
+          {/* Double or triple the text for an infinite scrolling seamless illusion */}
+          {[1, 2, 3, 4].map((idx) => (
+            <span key={idx} className="inline-flex items-center gap-3">
+              <span>{text}</span>
+              {linkUrl && (
+                <a 
+                  href={linkUrl} 
+                  className="inline-flex items-center gap-0.5 hover:underline font-black px-2.5 py-1 bg-black/5 hover:bg-black/10 rounded-full text-[10px] transition-all"
+                >
+                  <span>استثمر فرصة ولدك</span>
+                  <ArrowLeft className="w-3 h-3" />
+                </a>
+              )}
+              <span className="opacity-40">•</span>
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
