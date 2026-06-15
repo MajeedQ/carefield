@@ -1,6 +1,5 @@
 /**
- * @license
- * SPDX-License-Identifier: Apache-2.0
+ * Public-facing types used by site components (mirror of legacy AppConfig shape).
  */
 
 export interface ServiceItem {
@@ -16,7 +15,7 @@ export interface ServiceItem {
 
 export interface GalleryItem {
   id: string;
-  type: 'image' | 'video';
+  type: "image" | "video";
   title: string;
   category: string;
   thumbnailUrl: string;
@@ -28,13 +27,100 @@ export interface LeadSubmission {
   fullName: string;
   phone: string;
   district: string;
-  serviceId?: string; // Optional interested service
+  ageOfBeneficiary?: string;
+  serviceId?: string;
   notes?: string;
   createdAt: string;
-  status: 'pending' | 'contacted' | 'scheduled';
+  status: "pending" | "contacted" | "scheduled";
 }
 
 export interface FAQItem {
   question: string;
   answer: string;
+}
+
+export interface BranchInfo {
+  id: string;
+  name: string;
+  address: string;
+  mapUrl: string;
+  phone: string;
+  shareUrl?: string;
+}
+
+export interface WideBanner {
+  id: string;
+  title: string;
+  subtitle: string;
+  imageUrl: string;
+  tag: string;
+  linkUrl?: string;
+  buttonText?: string;
+}
+
+export interface MarketingPixels {
+  googleAnalyticsId: string;
+  metaPixelId: string;
+  snapchatPixelId: string;
+  tiktokPixelId: string;
+}
+
+export interface AnnouncementConfig {
+  enabled: boolean;
+  text: string;
+  linkUrl?: string;
+  backgroundColor: string;
+  textColor: string;
+  speed: "slow" | "normal" | "fast";
+}
+
+export interface ThemeConfig {
+  primaryColor: string;
+  accentColor: string;
+  backgroundColor: string;
+  logoText: string;
+  logoSubtitle: string;
+  fontScale: "compact" | "normal" | "large" | "huge";
+  fontFamily: "system" | "inter" | "cairo" | "tajawal" | "grotesk";
+  borderRadius: "none" | "small" | "medium" | "large" | "xlarge" | "full";
+  spacingScale: "compact" | "normal" | "comfortable" | "loose";
+}
+
+export interface AboutSectionData {
+  title: string;
+  subtitle: string;
+  description: string;
+  vision: string;
+  mission: string;
+  goals: string[];
+  imageUrl: string;
+}
+
+export interface SocialMedia {
+  phone1: string;
+  phone2: string;
+  whatsapp: string;
+  twitter: string;
+  instagram: string;
+  snapchat: string;
+  tiktok: string;
+  email: string;
+  linkedin?: string;
+}
+
+export interface AppConfig {
+  banners: WideBanner[];
+  socialMedia: SocialMedia;
+  googleSheetsUrl: string;
+  pixels: MarketingPixels;
+  branches: BranchInfo[];
+  gallery: GalleryItem[];
+  announcement: AnnouncementConfig;
+  theme: ThemeConfig;
+  services: ServiceItem[];
+  faqs: FAQItem[];
+  trustBadges: { id: string; icon: string; text: string }[];
+  heroSlides: { id: string; title: string; subtitle: string; imageUrl: string; tag: string }[];
+  heroStats: { num: string; label: string }[];
+  aboutSection: AboutSectionData;
 }
