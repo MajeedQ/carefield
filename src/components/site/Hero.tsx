@@ -56,22 +56,26 @@ export const Hero: React.FC = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#775a19]"></span>
             </span>
-            <span className="text-slate-500">حاصل على</span>
-            <span className="text-[#775a19] font-black">تصنيف الفئة الأولى (A+)</span>
+            <span className="text-slate-500">{c.hero_badge_prefix || 'حاصل على'}</span>
+            <span className="text-[#775a19] font-black">{c.hero_badge_emphasis || 'تصنيف الفئة الأولى (A+)'}</span>
             <span className="text-slate-400 font-light">|</span>
-            <span className="text-slate-600 font-bold">وزارة الموارد البشرية</span>
+            <span className="text-slate-600 font-bold">{c.hero_badge_authority || 'وزارة الموارد البشرية'}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-[#002c6d] leading-tight md:leading-[1.15] tracking-tight">
-            الرعاية التأهيلية الأمثل <br />
+            {c.hero_title_line1 || 'الرعاية التأهيلية الأمثل'} <br />
             <span className="relative inline-block text-[#775a19] mt-1">
-              لأطفالنا أبطال القدرات
+              {c.hero_title_line2 || 'لأطفالنا أبطال القدرات'}
               <span className="absolute bottom-2 right-0 left-0 h-2 bg-amber-400/20 rounded-full -z-10" />
             </span>
           </h1>
 
           <p className="text-base md:text-[17px] text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
-            في <span className="font-bold text-[#002c6d]">{logoText}</span>، نكرّس جهودنا لبناء جسور الأمل لتمكين وتأهيل أبطالنا ذوي الاحتياجات الخاصة عبر خطط علاجية وتأهيلية فردية بإشراف نخبة مرخصة ومؤهلة.
+            {c.hero_paragraph ? (
+              <>في <span className="font-bold text-[#002c6d]">{logoText}</span>، {c.hero_paragraph}</>
+            ) : (
+              <>في <span className="font-bold text-[#002c6d]">{logoText}</span>، نكرّس جهودنا لبناء جسور الأمل لتمكين وتأهيل أبطالنا ذوي الاحتياجات الخاصة عبر خطط علاجية وتأهيلية فردية بإشراف نخبة مرخصة ومؤهلة.</>
+            )}
           </p>
 
           {/* Key Credentials Stats Grid (Bento style) - Eliminates simple flat design */}
@@ -87,22 +91,22 @@ export const Hero: React.FC = () => {
           <div className="flex flex-col gap-4 mt-2">
             <div className="flex flex-col sm:flex-row gap-3.5 justify-center lg:justify-start">
               <a 
-                href="#lead-form" 
+                href={c.hero_cta_primary_link || '#lead-form'}
                 className="inline-flex items-center justify-center gap-2.5 bg-[#002c6d] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#775a19] hover:shadow-xl hover:shadow-amber-500/10 active:scale-98 transition-all duration-300 shadow-lg shadow-blue-950/10 group cursor-pointer"
               >
-                <span>طلب تواصل واستشارة مجانية</span>
+                <span>{c.hero_cta_primary || 'طلب تواصل واستشارة مجانية'}</span>
                 <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1.5" />
               </a>
               <a 
-                href="#services-section" 
+                href={c.hero_cta_secondary_link || '#services-section'}
                 className="inline-flex items-center justify-center bg-white text-[#002c6d] border border-blue-100/80 px-7 py-4 rounded-xl font-bold hover:bg-[#002c6d]/5 hover:border-[#002c6d]/30 active:scale-98 transition-all duration-300"
               >
-                استعراض خدمات التأهيل
+                {c.hero_cta_secondary || 'استعراض خدمات التأهيل'}
               </a>
             </div>
 
             <p className="text-[11px] text-slate-400 font-medium leading-relaxed max-w-lg mx-auto lg:mx-0">
-              ⚡ المبادرة بالتسجيل المبكر تضمن لطفلك مقعده المعتمد والمدرج في برنامج الرعاية والمتابعة.
+              {c.hero_microcopy || '⚡ المبادرة بالتسجيل المبكر تضمن لطفلك مقعده المعتمد والمدرج في برنامج الرعاية والمتابعة.'}
             </p>
           </div>
         </div>
