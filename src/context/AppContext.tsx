@@ -44,6 +44,7 @@ const FALLBACK: AppConfig = {
   banners: [],
   socialMedia: {
     phone1: "0560098881", phone2: "0546461647", whatsapp: "966560098881",
+    whatsappMessage: "السلام عليكم ورحمة الله وبركاته، أود الاستفسار عن حجز مقعد وتحديد موعد التقييم المجاني في مركز مجال العناية للرعاية النهارية.",
     twitter: "", instagram: "", snapchat: "", tiktok: "", email: "care.f.center@gmail.com", linkedin: "",
   },
   googleSheetsUrl: "",
