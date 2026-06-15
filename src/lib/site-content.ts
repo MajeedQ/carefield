@@ -195,6 +195,9 @@ export const faqsQuery = (onlyActive = true) =>
 export const wideBannersQuery = (onlyActive = true) =>
   sortedList<DbWideBanner>("wide_banners", "wide_banners", onlyActive);
 
+export const heroStatsQuery = (onlyActive = true) =>
+  sortedList<DbHeroStat>("hero_stats", "hero_stats", onlyActive);
+
 export const settingsQuery = () =>
   queryOptions({
     queryKey: ["site_settings"],
