@@ -55,7 +55,12 @@ export const LeadForm: React.FC<LeadFormProps> = ({
   onClearPreselected,
   onNewInquiryAdded
 }) => {
-  const { addLead } = useApp();
+  const { addLead, config } = useApp();
+  const waRaw = String(config?.socialMedia?.whatsapp || '966560098881').trim();
+  const waText = encodeURIComponent('السلام عليكم، أرسلت طلب تسجيل عبر الموقع وأرغب بتأكيد موعد التقييم المجاني.');
+  const whatsappUrl = waRaw.startsWith('http')
+    ? (waRaw.includes('?') ? waRaw : `${waRaw}?text=${waText}`)
+    : `https://wa.me/${waRaw.replace(/\+/g, '')}?text=${waText}`;
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [district, setDistrict] = useState('');
