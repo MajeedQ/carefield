@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Phone, Mail, MessageCircle, Instagram, Linkedin } from 'lucide-react';
+import { Phone, Mail, Instagram } from 'lucide-react';
 import { CareFieldLogo } from './CareFieldLogo';
 import { useApp } from '@/context/AppContext';
 
@@ -24,7 +24,6 @@ export const Footer: React.FC = () => {
   const instagramUrl = getSocialUrl(config.socialMedia.instagram, 'https://instagram.com/');
   const snapchatUrl = getSocialUrl(config.socialMedia.snapchat, 'https://snapchat.com/add/');
   const tiktokUrl = getSocialUrl(config.socialMedia.tiktok, 'https://tiktok.com/@');
-  const linkedinUrl = getSocialUrl(config.socialMedia.linkedin || 'company/carefieldcenter', 'https://linkedin.com/in/');
   const emailUrl = `mailto:${config.socialMedia.email || 'Care.f.center@gmail.com'}`;
   const waRaw = String(config.socialMedia.whatsapp || '966560098881').trim();
   const whatsappUrl = waRaw.startsWith('http') ? waRaw : `https://wa.me/${waRaw.replace(/\+/g, '')}`;
@@ -34,7 +33,7 @@ export const Footer: React.FC = () => {
       <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
         
         {/* Logo */}
-        <CareFieldLogo variant="symbol" className="h-24 w-24" />
+        <CareFieldLogo variant="symbol" className="h-32 w-32 md:h-40 md:w-40 drop-shadow-md" />
 
         {/* Title & Description */}
         <div className="space-y-2">
@@ -67,20 +66,22 @@ export const Footer: React.FC = () => {
           </a>
         </div>
 
-        {/* Social media icons (Matching specifications and URLs) */}
-        <div className="flex gap-3 justify-center text-[#002c6d] mt-2 flex-wrap" id="footer-social-icons-row">
+        {/* Social media icons (Original brand icons) */}
+        <div className="flex gap-2.5 sm:gap-3 justify-center text-[#002c6d] mt-2 flex-wrap" id="footer-social-icons-row">
           
-          {/* WhatsApp Direct */}
+          {/* WhatsApp Direct - official mark */}
           {config.socialMedia.whatsapp && (
             <a 
               aria-label="تواصل معنا واتساب مباشر" 
-              className="p-2.5 bg-white rounded-full shadow-xs hover:bg-[#25D366] hover:text-white transition-all border border-slate-100 flex items-center justify-center w-11 h-11 pointer-events-auto" 
+              className="p-3 bg-white rounded-full shadow-sm hover:bg-[#25D366] hover:text-white transition-all border border-slate-100 flex items-center justify-center w-12 h-12 pointer-events-auto" 
               href={whatsappUrl} 
               target="_blank" 
               rel="noopener noreferrer"
               id="footer-whatsapp-icon"
             >
-              <MessageCircle className="w-5 h-5 fill-current" />
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden>
+                <path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26L3.4 19.795l3.255-1.602zM17.5 14.382c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+              </svg>
             </a>
           )}
 
@@ -88,72 +89,60 @@ export const Footer: React.FC = () => {
           {config.socialMedia.twitter && (
             <a 
               aria-label="الحساب الرسمي على منصة إكس" 
-              className="p-2.5 bg-white rounded-full shadow-xs hover:bg-black hover:text-white transition-all border border-slate-100 flex items-center justify-center w-11 h-11 pointer-events-auto" 
+              className="p-3 bg-white rounded-full shadow-sm hover:bg-black hover:text-white transition-all border border-slate-100 flex items-center justify-center w-12 h-12 pointer-events-auto" 
               href={twitterUrl} 
               target="_blank" 
               rel="noopener noreferrer"
               id="footer-twitter"
             >
-              <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden>
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
               </svg>
             </a>
           )}
 
-          {/* Instagram */}
+          {/* Instagram - official gradient on hover */}
           {config.socialMedia.instagram && (
             <a 
               aria-label="الحساب الرسمي على إنستغرام" 
-              className="p-2.5 bg-white rounded-full shadow-xs hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-500 hover:to-purple-600 hover:text-white transition-all border border-slate-100 flex items-center justify-center w-11 h-11 pointer-events-auto" 
+              className="p-3 bg-white rounded-full shadow-sm hover:bg-gradient-to-tr hover:from-[#fdc468] hover:via-[#e1306c] hover:to-[#833ab4] hover:text-white transition-all border border-slate-100 flex items-center justify-center w-12 h-12 pointer-events-auto" 
               href={instagramUrl} 
               target="_blank" 
               rel="noopener noreferrer"
               id="footer-instagram"
             >
-              <Instagram className="w-4.5 h-4.5" />
+              <Instagram className="w-5 h-5" />
             </a>
           )}
 
-          {/* LinkedIn Direct */}
-          <a 
-            aria-label="الصفحة المهنية على لينكد إن" 
-            className="p-2.5 bg-white rounded-full shadow-xs hover:bg-[#0077b5] hover:text-white transition-all border border-slate-100 flex items-center justify-center w-11 h-11 pointer-events-auto" 
-            href={linkedinUrl} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            id="footer-linkedin"
-          >
-            <Linkedin className="w-4.5 h-4.5 fill-current" />
-          </a>
-
-          {/* Snapchat */}
+          {/* Snapchat - official ghost mark */}
           {config.socialMedia.snapchat && (
             <a 
               aria-label="سناب شات" 
-              className="p-2.5 bg-white rounded-full shadow-xs hover:bg-[#FFFC00] hover:text-black transition-all border border-slate-100 flex items-center justify-center w-11 h-11 pointer-events-auto" 
+              className="p-3 bg-white rounded-full shadow-sm hover:bg-[#FFFC00] hover:text-black transition-all border border-slate-100 flex items-center justify-center w-12 h-12 pointer-events-auto" 
               href={snapchatUrl} 
               target="_blank" 
               rel="noopener noreferrer"
               id="footer-snapchat"
             >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M12.164 1.018c-3.284 0-5.787 2.015-6.52 4.707-.156.57-.22 1.488-.168 2.453-.027 1.076.248 1.956.452 2.658.113.393.208.723.243.987.054.409-.126.963-1.077 1.636-.547.387-1.408.823-2.185 1.259-1.12.63-2.316 1.303-2.723 2.196-.445.975-.102 1.83.987 2.463 1.144.664 2.614.99 4.368.966.368-.005.748-.02 1.135-.045.228-.016.463-.034.697-.04.475-.015.688.307.722.56.036.27-.087.614-.52.883-1.07.663-1.435 1.258-1.435 1.258-.025.044-.21.413.354.764.444.275 1.07.412 1.86.412.836 0 1.868-.182 3.064-.54 1.13-.34 2.227-.85 3.32-1.378.136-.065.27-.13.406-.195.14-.066.274-.13.414-.194 1.11.536 2.223 1.054 3.372 1.4.152.046.307.09.462.133 1.11.31 2.083.47 2.875.47.788 0 1.413-.136 1.856-.412.565-.35.38-.72.355-.764 0 0-.365-.594-1.435-1.258-.432-.268-.555-.612-.52-.882.034-.253.247-.575.722-.56.234.006.47.024.697.04.387.025.767.04 1.135.045 1.753.023 3.223-.302 4.366-.966 1.09-.633 1.433-1.488.988-2.463-.406-.893-1.602-1.566-2.723-2.196-.777-.436-1.637-.87-2.185-1.258-.95-.672-1.13-1.226-1.076-1.635.035-.264.13-.594.243-.987.204-.702.48-1.582.453-2.658.05-9.458-10.457-11.458-12.015-11.458z"></path>
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden>
+                <path d="M12.166 22.5c-.398 0-.781-.022-1.054-.06-.262-.038-.514-.151-.694-.302-.18-.151-.299-.34-.328-.529-.029-.18-.024-.36.014-.529.038-.18.108-.34.205-.471.097-.13.21-.232.328-.302.119-.07.232-.108.328-.108.07 0 .14.014.205.043.135.06.27.13.398.21l.043.029c.052.038.108.07.167.097l.108.06c.06.029.119.06.18.07-.06-.097-.151-.232-.27-.398-.119-.18-.252-.367-.398-.572-.151-.21-.302-.421-.471-.644-.18-.232-.352-.464-.514-.694-.18-.252-.34-.487-.487-.715l-.302-.471c-.097-.151-.18-.302-.252-.45-.078-.151-.151-.302-.21-.45-.06-.151-.119-.302-.151-.45-.043-.151-.07-.302-.08-.45-.01-.151-.014-.302 0-.45.014-.151.043-.302.08-.45-.07-.06-.151-.119-.232-.18-.097-.07-.21-.151-.34-.232-.13-.097-.27-.21-.421-.328-.151-.119-.302-.252-.45-.398-.151-.151-.302-.302-.45-.471-.151-.18-.302-.367-.45-.572-.151-.21-.302-.421-.45-.644-.151-.232-.302-.464-.45-.694L4.9 11.3c-.07-.151-.13-.302-.18-.45-.052-.151-.097-.302-.13-.45-.043-.151-.07-.302-.08-.45-.014-.151-.014-.302 0-.45.024-.27.08-.529.151-.78.078-.252.18-.495.302-.715.119-.232.252-.45.398-.65.151-.21.302-.398.45-.572.151-.18.302-.34.45-.487.151-.151.302-.27.45-.398.151-.119.302-.232.45-.34-.043-.151-.097-.302-.151-.45-.06-.151-.119-.302-.18-.45-.078-.151-.14-.302-.21-.45-.07-.151-.14-.302-.21-.45-.078-.151-.151-.302-.21-.45-.06-.151-.119-.302-.18-.45-.052-.151-.097-.302-.13-.45-.043-.151-.07-.302-.08-.45-.014-.151-.014-.302 0-.45.024-.302.097-.595.21-.866.119-.27.27-.514.45-.715.18-.21.398-.367.644-.487.252-.119.524-.18.808-.18.27 0 .529.06.78.18.252.119.487.27.694.45.21.18.398.398.572.65.18.252.34.514.487.78.151-.27.302-.514.45-.78.151-.27.302-.514.45-.78.151-.27.302-.514.45-.78.151-.27.302-.514.45-.78.151-.27.302-.514.45-.78.151-.27.302-.514.45-.78.151-.27.302-.514.45-.78.151-.27.302-.514.45-.78.18-.27.398-.487.65-.65.252-.151.529-.232.836-.232.302 0 .595.07.866.21.27.151.514.34.715.572.21.252.367.524.487.836.119.302.18.6.18.916 0 .314-.06.6-.18.866-.13.27-.302.514-.514.715-.21.21-.45.367-.715.487-.27.119-.555.18-.836.18-.097 0-.18-.014-.252-.024-.252.832-.45 1.64-.595 2.43-.151.78-.232 1.535-.232 2.267 0 .314.014.6.052.866.034.27.097.514.18.715.078.21.18.398.302.572.119.18.27.34.45.487.18.151.398.27.65.398.252.119.529.232.836.34.314.119.65.232 1.022.34.367.119.78.232 1.225.34.45.119.93.21 1.44.302.514.097 1.054.18 1.626.252.572.07 1.176.13 1.808.18.65.043 1.328.07 2.04.08.715.014 1.46.014 2.232 0 .78-.014 1.582-.052 2.408-.119.043-.014.097-.014.151-.014.151.014.302.043.45.097.151.052.302.119.45.21.151.097.302.21.45.34.151.13.302.27.45.421.151.151.27.302.398.45.119.151.21.302.27.45.06.151.097.302.097.45 0 .151-.043.302-.13.45-.097.151-.232.302-.398.45-.18.151-.398.302-.65.45-.252.151-.529.302-.836.45-.302.151-.625.302-.954.45-.328.151-.65.302-.97.45-.328.151-.625.302-.93.45-.302.151-.572.302-.808.45-.232.151-.421.302-.572.45-.151.151-.252.302-.302.45-.043.151-.052.302-.014.45.043.151.13.302.27.45.13.151.302.302.514.45.21.151.45.302.715.45.27.151.55.302.836.45.314.151.65.302.998.45.34.151.7.302 1.054.45.367.151.738.302 1.114.45.375.151.748.302 1.114.45.367.151.738.302 1.114.45.367.151.738.302 1.114.45.375.151.748.302 1.114.45.367.151.738.302 1.114.45-1.32.715-2.69 1.32-4.116 1.808-1.426.487-2.91.836-4.461 1.054-.715.097-1.44.151-2.18.18l-1.486.014h-.029z"/>
               </svg>
             </a>
           )}
 
-          {/* TikTok */}
+          {/* TikTok - official mark */}
           {config.socialMedia.tiktok && (
             <a 
               aria-label="تيك توك" 
-              className="p-2.5 bg-white rounded-full shadow-xs hover:bg-[#010101] hover:text-white transition-all border border-slate-100 flex items-center justify-center w-11 h-11 pointer-events-auto" 
+              className="p-3 bg-white rounded-full shadow-sm hover:bg-[#010101] hover:text-white transition-all border border-slate-100 flex items-center justify-center w-12 h-12 pointer-events-auto" 
               href={tiktokUrl} 
               target="_blank" 
               rel="noopener noreferrer"
               id="footer-tiktok"
             >
-              <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
-                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.78-1.15 5.54-3.33 7.31-1.92 1.57-4.58 2.2-6.99 1.58-2.5-.66-4.58-2.44-5.46-4.84-.86-2.38-.64-5.18.57-7.39 1.16-2.13 3.39-3.71 5.8-4.08.31-.05.63-.08.94-.11v4.04c-1.39.23-2.79.84-3.7 1.91-.9 1.05-1.33 2.5-1.1 3.89.24 1.51 1.34 2.87 2.78 3.37 1.45.51 3.16.32 4.41-.6 1.11-.83 1.76-2.18 1.8-3.56.08-4.99.04-9.98.04-14.97h.03z"></path>
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden>
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.59a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.84-.02z"/>
               </svg>
             </a>
           )}
@@ -162,11 +151,11 @@ export const Footer: React.FC = () => {
           {config.socialMedia.email && (
             <a 
               aria-label="البريد الإلكتروني للمراسلة" 
-              className="p-2.5 bg-white rounded-full shadow-xs hover:bg-[#ea4335] hover:text-white transition-all border border-slate-100 flex items-center justify-center w-11 h-11 pointer-events-auto" 
+              className="p-3 bg-white rounded-full shadow-sm hover:bg-[#ea4335] hover:text-white transition-all border border-slate-100 flex items-center justify-center w-12 h-12 pointer-events-auto" 
               href={emailUrl}
               id="footer-email"
             >
-              <Mail className="w-4.5 h-4.5" />
+              <Mail className="w-5 h-5" />
             </a>
           )}
 
