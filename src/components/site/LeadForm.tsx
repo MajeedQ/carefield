@@ -178,13 +178,13 @@ export const LeadForm: React.FC<LeadFormProps> = ({
               {/* Center aligned title block */}
               <div className="text-center mb-10">
                 <span className="inline-flex items-center gap-1.5 bg-amber-500/10 text-[#775a19] text-xs font-black px-4 py-2 rounded-full mb-3 shadow-6xs border border-amber-500/15">
-                  ⭐ حجز مقعد وتقييم سلوكي مجاني
+                  {c.form_badge || '⭐ حجز مقعد وتقييم سلوكي مجاني'}
                 </span>
                 <h2 className="text-2xl md:text-3xl font-black text-[#002c6d] tracking-tight leading-snug">
-                  طلب استشارة مبدئية وجدولة زيارة
+                  {c.form_title || 'طلب استشارة مبدئية وجدولة زيارة'}
                 </h2>
                 <p className="text-xs md:text-sm text-slate-500 font-normal leading-relaxed max-w-xl mx-auto mt-2">
-                  سجل بيانات طفلك الغالي الآن، وسيتواصل معك منسق الرعاية لترتيب موعد زيارة الفروع وتحديد أوقات دراسة الكشف والمهارات مجانًا.
+                  {c.form_subtitle || 'سجل بيانات طفلك الغالي الآن، وسيتواصل معك منسق الرعاية لترتيب موعد زيارة الفروع وتحديد أوقات دراسة الكشف والمهارات مجانًا.'}
                 </p>
               </div>
 
