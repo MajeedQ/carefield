@@ -184,8 +184,8 @@ export const Hero: React.FC = () => {
                   <CheckCircle2 className="w-5 h-5" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-[10px] text-slate-500 font-medium leading-none">ترخيص وزارة</span>
-                  <span className="text-xs text-[#002c6d] font-black mt-1">تأهيل طبي معتمد</span>
+                  <span className="text-[10px] text-slate-500 font-medium leading-none">{c.hero_stamp_top || 'ترخيص وزارة'}</span>
+                  <span className="text-xs text-[#002c6d] font-black mt-1">{c.hero_stamp_bottom || 'تأهيل طبي معتمد'}</span>
                 </div>
               </div>
             </div>
