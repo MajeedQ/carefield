@@ -95,6 +95,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       })),
       socialMedia: {
         phone1: s.phone1 ?? "", phone2: s.phone2 ?? "", whatsapp: s.whatsapp ?? "",
+        whatsappMessage: (s as any).whatsapp_message ?? FALLBACK.socialMedia.whatsappMessage,
         twitter: s.twitter ?? "", instagram: s.instagram ?? "", snapchat: s.snapchat ?? "",
         tiktok: s.tiktok ?? "", email: s.email ?? "", linkedin: s.linkedin ?? "",
       },
