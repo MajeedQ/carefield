@@ -130,7 +130,7 @@ export const ServicesGrid: React.FC<ServicesGridProps> = ({ onSelectService }) =
                       <LucideIcon 
                         name={service.iconName} 
                         className="w-6 h-6 text-[#002c6d] group-hover:text-white transition-colors duration-300" 
-                        id={`service-icon-${service.id}`}
+                       
                       />
                       {/* Ambient ring accent */}
                       <div className="absolute -inset-1.5 rounded-2xl border border-blue-500/5 group-hover:border-[#002c6d]/15 transition-all duration-300 pointer-events-none" />
