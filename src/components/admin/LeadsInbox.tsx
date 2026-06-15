@@ -148,10 +148,17 @@ export function LeadsInbox() {
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
+    const fromTs = dateFrom ? new Date(dateFrom + "T00:00:00").getTime() : null;
+    const toTs = dateTo ? new Date(dateTo + "T23:59:59").getTime() : null;
     const rows = leads.filter((l) => {
       if (status && l.status !== status) return false;
       if (branch && !(l.district || "").toLowerCase().includes(branch.toLowerCase())) return false;
       if (service && (l.service_id || "") !== service) return false;
+      if (fromTs || toTs) {
+        const t = new Date(l.created_at).getTime();
+        if (fromTs && t < fromTs) return false;
+        if (toTs && t > toTs) return false;
+      }
       if (!q) return true;
       return (
         l.full_name.toLowerCase().includes(q) ||
@@ -170,7 +177,13 @@ export function LeadsInbox() {
       return sortDir === "asc" ? cmp : -cmp;
     });
     return rows;
-  }, [leads, search, status, branch, service, sortKey, sortDir]);
+  }, [leads, search, status, branch, service, dateFrom, dateTo, sortKey, sortDir]);
+
+  const resetFilters = () => {
+    setSearch(""); setStatus(""); setBranch(""); setService("");
+    setDateFrom(""); setDateTo(""); setPage(1);
+  };
+  const activeFilterCount = [search, status, branch, service, dateFrom, dateTo].filter(Boolean).length;
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
   const currentPage = Math.min(page, totalPages);
