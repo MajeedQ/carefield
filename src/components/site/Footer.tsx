@@ -166,7 +166,7 @@ export const Footer: React.FC = () => {
 
         {/* Footer legalities */}
         <p className="text-[11px] text-[#434651]/80 mt-4 leading-normal">
-          © {new Date().getFullYear()} مركز مجال العناية للرعاية النهارية. جميع الحقوق محفوظة ومسجلة بوزارة الموارد البشرية.
+          {config.footerCopyright || `© ${new Date().getFullYear()} مركز مجال العناية للرعاية النهارية. جميع الحقوق محفوظة ومسجلة بوزارة الموارد البشرية.`}
         </p>
       </div>
 
