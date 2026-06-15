@@ -333,14 +333,14 @@ export const LeadForm: React.FC<LeadFormProps> = ({
                 variants={itemVariants}
                 className="text-xl md:text-2xl font-black text-[#002c6d] mt-4 mb-3"
               >
-                وصلَنا طلبك 💚 وسنتواصل معك خلال 24 ساعة
+                {c.form_success_title || 'وصلَنا طلبك 💚 وسنتواصل معك خلال 24 ساعة'}
               </motion.h2>
 
               <motion.p 
                 variants={itemVariants}
                 className="text-xs md:text-sm text-[#434651] font-light leading-relaxed max-w-xl mx-auto"
               >
-                شكراً لثقتك بـ <strong className="font-semibold text-[#002c6d]">مركز مجال العناية</strong>. تم تحويل طلبك مباشرةً إلى منسّق القبول والاستشارات، وسيتواصل معك على الرقم الذي أرسلته لترتيب موعد التقييم السلوكي المجاني في الفرع الأقرب.
+                {c.form_success_body || 'شكراً لثقتك بمركز مجال العناية. تم تحويل طلبك مباشرةً إلى منسّق القبول والاستشارات، وسيتواصل معك على الرقم الذي أرسلته لترتيب موعد التقييم السلوكي المجاني في الفرع الأقرب.'}
               </motion.p>
 
               <motion.div 
@@ -351,15 +351,15 @@ export const LeadForm: React.FC<LeadFormProps> = ({
                 <div className="space-y-2 text-xs text-[#434651] leading-relaxed">
                   <div className="flex items-start gap-2">
                     <span className="w-4.5 h-4.5 rounded-full bg-[#002c6d] text-white font-bold flex items-center justify-center text-[10px] shrink-0">1</span>
-                    <span>مكالمة ترحيبية قصيرة من فريق القبول لتحديد موعد الزيارة.</span>
+                    <span>{c.form_step_1 || 'مكالمة ترحيبية قصيرة من فريق القبول لتحديد موعد الزيارة.'}</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="w-4.5 h-4.5 rounded-full bg-[#002c6d] text-white font-bold flex items-center justify-center text-[10px] shrink-0">2</span>
-                    <span>تقييم سلوكي وحركي مجاني داخل المركز يحدد الخدمة الأنسب لطفلك.</span>
+                    <span>{c.form_step_2 || 'تقييم سلوكي وحركي مجاني داخل المركز يحدد الخدمة الأنسب لطفلك.'}</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="w-4.5 h-4.5 rounded-full bg-[#002c6d] text-white font-bold flex items-center justify-center text-[10px] shrink-0">3</span>
-                    <span>عرض خطة تأهيل واضحة مع المواعيد ووسائل النقل عند الحاجة.</span>
+                    <span>{c.form_step_3 || 'عرض خطة تأهيل واضحة مع المواعيد ووسائل النقل عند الحاجة.'}</span>
                   </div>
                 </div>
                 <p className="text-[11px] text-slate-500 mt-1">احتفظ برقم التذكرة <strong className="text-[#002c6d]">{ticketId}</strong> للرجوع إليه عند التواصل.</p>
@@ -374,7 +374,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
                   onClick={() => setIsSuccess(false)}
                   className="px-5 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-[#434651] hover:bg-slate-50 transition-colors cursor-pointer"
                 >
-                  تسجيل مستفيد آخر
+                  {c.form_new_btn || 'تسجيل مستفيد آخر'}
                 </button>
                 <a
                   href={whatsappUrl}
@@ -382,7 +382,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:scale-[1.02] active:scale-[0.99] transition-transform shadow-md cursor-pointer"
                 >
-                  <span>متابعة فورية على الواتساب</span>
+                  <span>{c.form_whatsapp_btn || 'متابعة فورية على الواتساب'}</span>
                 </a>
               </motion.div>
 
