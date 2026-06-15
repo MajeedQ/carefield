@@ -14,6 +14,7 @@ import {
   branchesQuery,
   galleryQuery,
   heroSlidesQuery,
+  heroStatsQuery,
   trustBadgesQuery,
   servicesQuery,
   faqsQuery,
