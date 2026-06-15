@@ -35,7 +35,7 @@ export const CareFieldLogo: React.FC<CareFieldLogoProps> = ({
         src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNlY6nvcGw8M02ViWxRHOWDCqEchiVrI83N3zS5zfJIznuJ_STVVwBhqjqfrssaaoWnqkATtEfLbrTqRGzEE2Cvbm0BJ1LUFSq132Ff-5lcYvM9x6Y0iJTdSAjxCXHqR1kYfyofwwlmkfBCvrV2y8NjR1EhH7aNYEbRJVVMTC9cE7jHGF_yZOAa05vR2fznbVAJTT3w7fMubBwomh6ExZMrqru7Oct39idVNHn3BtNqiPa6RFnrxsuRmjKfdXS6ELw25vsypCPnyA" 
         alt="مركز مجال العناية للرعاية النهارية" 
         className="relative z-10 h-[90%] w-[90%] object-contain select-none transition-transform duration-500 ease-out group-hover:scale-110"
-        style={{ imageRendering: 'high-quality' }}
+        style={{ imageRendering: 'auto' }}
         referrerPolicy="no-referrer"
         id="care-field-logo-img"
       />

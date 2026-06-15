@@ -15,7 +15,7 @@ interface LeadFormProps {
   onNewInquiryAdded: () => void;
 }
 
-const containerVariants = {
+const containerVariants: any = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -31,7 +31,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: any = {
   hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
@@ -40,7 +40,7 @@ const itemVariants = {
   }
 };
 
-const checkmarkVariants = {
+const checkmarkVariants: any = {
   hidden: { scale: 0, rotate: -30, opacity: 0 },
   visible: {
     scale: 1,
