@@ -71,6 +71,10 @@ const FALLBACK: AppConfig = {
   aboutSection: {
     title: "نبذة عن المركز", subtitle: "", description: "", vision: "", mission: "", goals: [], imageUrl: "",
   },
+  content: {},
+  seo: {},
+  footerDescription: "",
+  footerCopyright: "",
 };
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
