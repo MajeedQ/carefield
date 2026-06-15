@@ -35,7 +35,13 @@ export const ThemeStyleInjector: React.FC = () => {
   };
   const spacingMap: Record<string, string> = { compact: "0.75", normal: "1.0", comfortable: "1.25", loose: "1.5" };
 
-  const primary = s.primary_color, accent = s.accent_color, bg = s.background_color;
+  const isSafeColor = (v: unknown): v is string =>
+    typeof v === "string" && /^(#[0-9a-fA-F]{3,8}|rgba?\([\d\s,.%/]+\)|hsla?\([\d\s,.%/]+\))$/.test(v.trim());
+  const safeColor = (v: unknown, fallback: string) => (isSafeColor(v) ? v.trim() : fallback);
+
+  const primary = safeColor(s.primary_color, "#002c6d");
+  const accent = safeColor(s.accent_color, "#775a19");
+  const bg = safeColor(s.background_color, "#ffffff");
   const fSize = fontScaleMap[s.font_scale] ?? "16px";
   const fFam = fontFamilyMap[s.font_family] ?? fontFamilyMap.tajawal;
   const radius = radiusMap[s.border_radius] ?? "18px";
