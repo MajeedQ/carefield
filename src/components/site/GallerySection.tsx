@@ -344,6 +344,8 @@ export const GallerySection: React.FC = () => {
                       alt={activeMedia.title} 
                       className="w-full h-full object-contain"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
                     />
                   )}
                 </div>
