@@ -155,6 +155,9 @@ function DraftForm({ draft, setDraft, fields, onSave, onCancel, saving }: any) {
             </label>
           );
         }
+        if (f.type === "image") {
+          return <ImageField key={f.key} field={f} value={v} onChange={(val) => setDraft({ ...draft, [f.key]: val })} />;
+        }
         return (
           <label key={f.key} className="block text-xs">
             <span className="font-bold mb-1 block">{f.label}</span>
