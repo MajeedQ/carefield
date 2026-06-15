@@ -330,6 +330,7 @@ export type Database = {
           twitter: string | null
           updated_at: string
           whatsapp: string | null
+          whatsapp_message: string
         }
         Insert: {
           about_description?: string
@@ -370,6 +371,7 @@ export type Database = {
           twitter?: string | null
           updated_at?: string
           whatsapp?: string | null
+          whatsapp_message?: string
         }
         Update: {
           about_description?: string
@@ -410,6 +412,7 @@ export type Database = {
           twitter?: string | null
           updated_at?: string
           whatsapp?: string | null
+          whatsapp_message?: string
         }
         Relationships: []
       }
