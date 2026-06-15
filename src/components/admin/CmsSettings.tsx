@@ -74,10 +74,25 @@ export function CmsSettings() {
 
   const sections = Array.from(new Set(fields.map((f) => f.section)));
 
+  // Live preview values from draft
+  const pPrimary = (draft.primary_color as string) || data.primary_color;
+  const pAccent = (draft.accent_color as string) || data.accent_color;
+  const pBg = (draft.background_color as string) || data.background_color;
+  const pRadiusMap: Record<string, string> = { none: "0px", small: "6px", medium: "12px", large: "18px", xlarge: "28px", full: "9999px" };
+  const pFontMap: Record<string, string> = {
+    system: 'system-ui, -apple-system, sans-serif',
+    inter: '"Inter", sans-serif',
+    cairo: '"Cairo", sans-serif',
+    tajawal: '"Tajawal", sans-serif',
+    grotesk: '"Space Grotesk", sans-serif',
+  };
+  const pRadius = pRadiusMap[(draft.border_radius as string) || data.border_radius] ?? "12px";
+  const pFont = pFontMap[(draft.font_family as string) || data.font_family] ?? pFontMap.tajawal;
+
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-extrabold text-[#002c6d]">إعدادات الموقع</h2>
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <h2 className="text-xl font-extrabold text-[#002c6d]">محرر الثيم وإعدادات الموقع</h2>
         <button
           onClick={() => save.mutate()}
           disabled={save.isPending}
@@ -90,6 +105,26 @@ export function CmsSettings() {
 
       {save.isError && <div className="text-xs text-red-600 bg-red-50 p-2 rounded">{(save.error as Error).message}</div>}
       {save.isSuccess && <div className="text-xs text-emerald-700 bg-emerald-50 p-2 rounded">تم الحفظ بنجاح</div>}
+
+      {/* Live preview card */}
+      <div className="rounded-2xl border border-blue-100 overflow-hidden shadow-sm">
+        <div className="px-4 py-2 bg-blue-50 text-[11px] font-bold text-[#002c6d]">معاينة فورية للثيم</div>
+        <div className="p-6" style={{ background: pBg, fontFamily: pFont }}>
+          <div className="flex flex-wrap items-center gap-4">
+            <h3 style={{ color: pPrimary }} className="text-2xl font-black">{(draft.logo_text as string) || data.logo_text}</h3>
+            <span style={{ color: pAccent }} className="text-xs font-bold">{(draft.logo_subtitle as string) || data.logo_subtitle}</span>
+          </div>
+          <p className="mt-3 text-sm" style={{ color: "#334155" }}>
+            هكذا تظهر النصوص والأزرار في موقعك. عدّل الألوان والخطوط أعلاه وستراها هنا قبل الحفظ.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <button style={{ background: pPrimary, color: "#fff", borderRadius: pRadius }} className="px-4 py-2 text-xs font-bold">زر رئيسي</button>
+            <button style={{ background: pAccent, color: "#fff", borderRadius: pRadius }} className="px-4 py-2 text-xs font-bold">زر ثانوي</button>
+            <button style={{ background: "#fff", color: pPrimary, border: `1px solid ${pPrimary}`, borderRadius: pRadius }} className="px-4 py-2 text-xs font-bold">زر شفاف</button>
+            <span style={{ background: pAccent + "22", color: pAccent, borderRadius: pRadius }} className="px-3 py-2 text-xs font-bold">شارة</span>
+          </div>
+        </div>
+      </div>
 
       {sections.map((sec) => (
         <div key={sec} className="bg-white rounded-2xl border border-blue-100 p-5 space-y-4">
