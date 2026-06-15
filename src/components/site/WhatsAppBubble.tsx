@@ -12,11 +12,12 @@ export const WhatsAppBubble: React.FC = () => {
   const { config } = useApp();
   const [showTooltip, setShowTooltip] = useState(false);
   
-  const whatsappNumber = config?.socialMedia?.whatsapp || '966560098881';
-  
-  // Custom pre-configured template text for prompt registration study of file
+  const waRaw = String(config?.socialMedia?.whatsapp || '966560098881').trim();
   const defaultText = 'السلام عليكم ورحمة الله وبركاته، أود الاستفسار عن حجز مقعد وتحديد موعد الكشف والتقييم المجاني في مركز مجال العناية للرعاية النهارية.';
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(defaultText)}`;
+  // Support full wa.me links (including /message/<short>) AND raw numbers
+  const whatsappUrl = waRaw.startsWith('http')
+    ? waRaw
+    : `https://wa.me/${waRaw.replace(/\+/g, '')}?text=${encodeURIComponent(defaultText)}`;
 
   useEffect(() => {
     // Automatically trigger the tooltip after 3.5 seconds to interact with users
