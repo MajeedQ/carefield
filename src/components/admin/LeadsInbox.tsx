@@ -82,14 +82,44 @@ export function LeadsInbox() {
   const { data: services = [] } = useQuery(servicesQuery(false));
   const { data: branches = [] } = useQuery(branchesQuery(false));
 
+  // Persist filter state across reloads
+  const STORAGE_KEY = "leadsInboxFilters.v1";
+  const [hydrated, setHydrated] = useState(false);
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
   const [branch, setBranch] = useState("");
   const [service, setService] = useState("");
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("created_at");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(25);
+
+  // Load saved filters once on client
+  useEffect(() => {
+    try {
+      const raw = typeof window !== "undefined" ? localStorage.getItem(STORAGE_KEY) : null;
+      if (raw) {
+        const s = JSON.parse(raw);
+        setSearch(s.search ?? ""); setStatus(s.status ?? ""); setBranch(s.branch ?? "");
+        setService(s.service ?? ""); setDateFrom(s.dateFrom ?? ""); setDateTo(s.dateTo ?? "");
+        setSortKey(s.sortKey ?? "created_at"); setSortDir(s.sortDir ?? "desc");
+        setPageSize(s.pageSize ?? 25);
+      }
+    } catch {}
+    setHydrated(true);
+  }, []);
+
+  // Persist on change
+  useEffect(() => {
+    if (!hydrated) return;
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        search, status, branch, service, dateFrom, dateTo, sortKey, sortDir, pageSize,
+      }));
+    } catch {}
+  }, [hydrated, search, status, branch, service, dateFrom, dateTo, sortKey, sortDir, pageSize]);
 
   const update = useMutation({
     mutationFn: async (l: Partial<DbLead> & { id: string }) => {
