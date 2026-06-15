@@ -1,52 +1,37 @@
-## الهدف
-نقل تصميم وكود مشروع `--main.zip` (مركز مجال العناية) إلى هذا المشروع الحالي على TanStack Start، مع الحفاظ على هيكلة TanStack Start (ملف `src/routes/index.tsx` بدل `App.tsx`).
+## الوضع الحالي
 
-## ما يحتويه المشروع المرفوع
-- React 19 + Vite + Tailwind v4 + `motion` + `lucide-react`
-- 11 مكوّن: `Header`, `RegistrationBanner`, `Hero`, `TrustIndicators`, `ServicesGrid`, `ServiceDetailModal`, `GallerySection`, `LeadForm`, `InquiryDashboard`, `FAQSection`, `Footer`, `LucideIcon`
-- `src/data.ts` (محتوى الخدمات/الأسئلة/المعرض) و `src/types.ts`
-- خطوط: Noto Kufi Arabic + IBM Plex Sans Arabic
-- ألوان: أزرق `#002c6d` + ذهبي `#e9c176` على خلفية `#f8f9ff`
-- نموذج التسجيل ولوحة الاستفسارات يعتمدان على `localStorage` (لا backend)
+- آخر commit في مشروع Lovable هو من جلستنا السابقة (لوحة التحكم على Lovable Cloud).
+- ما في أي تعديلات خارجية وصلت من GitHub حتى الآن. يعني المزامنة التلقائية ما تمّت، أو إن تعديلاتك على ريبو/فرع مختلف.
+- محاولة الوصول للريبو `https://github.com/MajeedQ/-.git` رجّعت **404 Not Found** (الاسم `-` غير صالح على GitHub، يبدو إنه ريبو خاص أو الرابط مختلف).
 
-## خطة التنفيذ
+## ما أحتاجه منك (خطوة واحدة)
 
-1. **التبعيات**
-   - `bun add motion` (المشروع الأصلي يستخدم `motion` لا `framer-motion`)
-   - `lucide-react` موجود مسبقاً
+أرسل لي في رسالة جديدة:
+1. **رابط الريبو الصحيح** على GitHub (مثلاً `https://github.com/UserName/RepoName`).
+2. **اسم الفرع** اللي فيه التعديلات (افتراضياً `main`).
+3. لو الريبو **خاص**: اجعله عام مؤقتاً، أو ارفع المشروع كملف ZIP هنا.
 
-2. **الخطوط والثيم** (`src/styles.css`)
-   - إضافة استيراد Google Fonts لـ Noto Kufi Arabic + IBM Plex Sans Arabic داخل `index.html` الجذر (عبر `__root.tsx` head)
-   - تحديث `--font-sans` ليصبح Noto Kufi Arabic، وإضافة `--font-display` لـ IBM Plex
-   - إضافة متغيرات الألوان الخاصة بالمشروع (primary/secondary/accent-gold/surface)
+## الخطة بعد ما أستلم الرابط
 
-3. **الجذر** (`src/routes/__root.tsx`)
-   - ضبط `<html lang="ar" dir="rtl">` وإضافة preconnect + رابط Google Fonts
-   - تحديث العنوان والوصف (SEO عربي)
+1. **سحب التعديلات**: أجلب قائمة كل الملفات من GitHub عبر `raw.githubusercontent.com` للريبو والفرع اللي أعطيتني.
 
-4. **نقل المكونات** إلى `src/components/site/`:
-   - نسخ كل ملفات `components/*.tsx` و `LucideIcon.tsx` و `data.ts` و `types.ts` كما هي (تعديل بسيط للمسارات النسبية)
-   - الحفاظ على `localStorage` لـ `LeadForm` + `InquiryDashboard` (سنربطها لاحقاً بـ Google Sheets / Lovable Cloud حسب طلبك القادم)
+2. **مقارنة وتحديد ما يُحدّث**: أحدد الملفات المتغيّرة/الجديدة/المحذوفة مقارنة بالحالة الحالية.
 
-5. **الصفحة الرئيسية** (`src/routes/index.tsx`)
-   - استبدال المحتوى الحالي بنفس بنية `App.tsx` من المشروع المرفوع (نفس الحالات: `selectedService`, `preselectedForForm`, `reloadInquiries`)
-   - الحفاظ على RTL والـ direction
-   - استخدام `head()` من TanStack لإضافة العنوان والوصف
+3. **سياسة الحفاظ على لوحة التحكم (مهم)**: لا أمسّ هذه الملفات/المجلدات أبداً لأنها مرتبطة بـ Lovable Cloud:
+   - `src/integrations/supabase/*`
+   - `src/routes/_authenticated/*`
+   - `src/routes/auth.tsx`
+   - `src/components/admin/*`
+   - `src/lib/site-content.ts`, `src/lib/storage.ts`
+   - `supabase/migrations/*`, `supabase/config.toml`
+   - `.env`, `src/start.ts` (الجزء الخاص بـ `attachSupabaseAuth`)
 
-6. **زر الواتساب العائم** يبقى كما في النسخة الحالية (إن لم يكن موجوداً في الملفات الأصلية، نضيفه داخل `index.tsx`)
+4. **تطبيق التعديلات** على باقي الملفات (المكوّنات، الصفحات، الستايلات، الراوتس العامة، البيانات الثابتة).
 
-7. **التحقق**
-   - قراءة preview للتأكد من ظهور كل الأقسام بالخطوط والألوان الصحيحة
+5. **إعادة الربط بقاعدة البيانات**: لو نسخة GitHub تحتوي مكوّنات `Hero` / `GallerySection` / `RegistrationBanner` بنسخ ثابتة، أعيد ربطها بالـ hooks الموجودة (`useBanners`, `useGalleryItems`) عشان لوحة التحكم تستمر تعمل.
 
-## ملاحظات
-- لن أضيف Lovable Cloud أو ربط Google Sheets/Pixels في هذه الخطوة — هذي مرحلة منفصلة نتفق عليها بعد ما يتثبت التصميم.
-- لن أنشئ `.env` ولا أنقل ملف `metadata.json` أو `vite.config.ts` من المشروع الأصلي (إعدادات TanStack الحالية تكفي).
-- صور المعرض ستبقى كما هي معرّفة في `data.ts` (روابط Unsplash/خارجية).
+6. **التحقق**: أتأكد من نجاح البناء، فحص الـ routes، ومعاينة الصفحة الرئيسية ولوحة `/admin`.
 
-## التقنيات
-- الإطار: TanStack Start (نفس الحالي)
-- Tailwind v4 + متغيرات `@theme`
-- `motion` للحركات
-- `lucide-react` للأيقونات
+## بديل سريع لو ما تقدر تعطي الرابط
 
-هل أبدأ التنفيذ؟
+أرفع ملف ZIP للمشروع الثاني هنا وأكمل من ZIP بنفس الخطوات أعلاه.
