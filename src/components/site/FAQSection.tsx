@@ -6,10 +6,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
-import { FAQ_DATA } from '@/lib/site-data';
+import { useApp } from '@/context/AppContext';
 
 export const FAQSection: React.FC = () => {
+  const { config } = useApp();
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
+  const faqs = config.faqs || [];
 
   const toggleAccordion = (idx: number) => {
     setActiveIdx(activeIdx === idx ? null : idx);
@@ -27,24 +29,28 @@ export const FAQSection: React.FC = () => {
         </div>
 
         {/* FAQ Accordion List */}
-        <div className="space-y-4">
-          {FAQ_DATA.map((faq, idx) => {
+        <div className="space-y-3.5">
+          {faqs.map((faq, idx) => {
             const isExpanded = activeIdx === idx;
             return (
               <div 
                 key={idx}
-                className="border-b border-blue-100/50 transition-colors"
+                className="bg-white rounded-2xl border border-slate-100 hover:border-amber-500/20 shadow-[0_2px_8px_rgba(0,44,109,0.01)] transition-all duration-300 overflow-hidden"
               >
                 <button
                   onClick={() => toggleAccordion(idx)}
-                  className={`w-full py-4 px-4 flex items-center justify-between text-right gap-4 rounded-xl cursor-pointer hover:bg-[#e5eeff]/20 transition-all ${
-                    isExpanded ? 'bg-[#e5eeff]/50' : ''
+                  className={`w-full py-5 px-5 flex items-center justify-between text-right gap-4 cursor-pointer transition-all ${
+                    isExpanded ? 'bg-gradient-to-r from-blue-50/50 to-white' : 'hover:bg-slate-50/50'
                   }`}
                   aria-expanded={isExpanded}
                 >
-                  <div className="flex items-center gap-3.5">
-                    <HelpCircle className={`w-5 h-5 shrink-0 ${isExpanded ? 'text-[#002c6d]' : 'text-[#775a19]'}`} />
-                    <span className="text-xs md:text-base font-bold text-[#0b1c30] leading-snug">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                      isExpanded ? 'bg-[#002c6d] text-white' : 'bg-[#775a19]/10 text-[#775a19]'
+                    }`}>
+                      <HelpCircle className="w-4 h-4" />
+                    </div>
+                    <span className="text-sm md:text-[15px] font-black text-slate-700 leading-snug">
                       {faq.question}
                     </span>
                   </div>
@@ -52,7 +58,7 @@ export const FAQSection: React.FC = () => {
                   {/* Chevron rotates clockwise for RTL structure (90 degrees right) as per requirement */}
                   <ChevronDown 
                     className={`w-4 h-4 text-[#002c6d] shrink-0 transition-transform duration-300 ${
-                      isExpanded ? 'rotate-90 text-[#775a19]' : ''
+                      isExpanded ? 'rotate-90 text-[#775a19] scale-110' : ''
                     }`} 
                   />
                 </button>
@@ -63,10 +69,10 @@ export const FAQSection: React.FC = () => {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="pb-5 pt-2 px-6 text-xs md:text-[15px] text-[#434651] leading-relaxed font-light font-sans">
+                      <div className="pb-5 pt-1 px-14 text-xs md:text-sm text-slate-500 leading-relaxed font-normal font-sans border-t border-slate-50/50">
                         {faq.answer}
                       </div>
                     </motion.div>
