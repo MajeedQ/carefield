@@ -12,6 +12,7 @@ export const Hero: React.FC = () => {
   const { config } = useApp();
   const slides = config.heroSlides || [];
   const stats = config.heroStats || [];
+  const c = config.content || {};
   const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
