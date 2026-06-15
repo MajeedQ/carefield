@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { LogOut, Image as ImageIcon, Megaphone, Home, Settings, BookOpen, Award, MapPin, HelpCircle, Mail, Layers } from "lucide-react";
+import { LogOut, Image as ImageIcon, Megaphone, Home, Settings, BookOpen, Award, MapPin, HelpCircle, Mail, Layers, Search, FileText, BarChart3 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQueryClient } from "@tanstack/react-query";
 import { BannerManager } from "@/components/admin/BannerManager";
@@ -8,9 +8,10 @@ import { GalleryManager } from "@/components/admin/GalleryManager";
 import { CmsSettings } from "@/components/admin/CmsSettings";
 import { CmsCrud } from "@/components/admin/CmsCrud";
 import { LeadsInbox } from "@/components/admin/LeadsInbox";
+import { ContentEditor, HOMEPAGE_FIELDS, SEO_FIELDS } from "@/components/admin/ContentEditor";
 import {
   servicesQuery, faqsQuery, branchesQuery, heroSlidesQuery,
-  trustBadgesQuery, wideBannersQuery,
+  trustBadgesQuery, wideBannersQuery, heroStatsQuery,
 } from "@/lib/site-content";
 
 export const Route = createFileRoute("/_authenticated/admin")({
@@ -18,12 +19,15 @@ export const Route = createFileRoute("/_authenticated/admin")({
   component: AdminPage,
 });
 
-type TabKey = "settings" | "leads" | "hero" | "wide" | "banners" | "services" | "branches" | "trust" | "faqs" | "gallery" | "about";
+type TabKey = "settings" | "homepage" | "seo" | "leads" | "hero" | "stats" | "wide" | "banners" | "services" | "branches" | "trust" | "faqs" | "gallery";
 
 const TABS: { key: TabKey; label: string; icon: any }[] = [
   { key: "settings", label: "الإعدادات العامة", icon: Settings },
+  { key: "homepage", label: "محتوى الواجهة والنموذج", icon: FileText },
+  { key: "seo", label: "SEO ومحركات البحث", icon: Search },
   { key: "leads", label: "الطلبات الواردة", icon: Mail },
-  { key: "hero", label: "الهيرو", icon: ImageIcon },
+  { key: "hero", label: "شرائح الهيرو", icon: ImageIcon },
+  { key: "stats", label: "إحصائيات الهيرو", icon: BarChart3 },
   { key: "wide", label: "بانرات عريضة", icon: Layers },
   { key: "banners", label: "بانرات نصية", icon: Megaphone },
   { key: "services", label: "الخدمات", icon: BookOpen },
