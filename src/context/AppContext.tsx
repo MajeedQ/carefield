@@ -7,7 +7,8 @@
 
 import React, { createContext, useContext, useMemo, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useRouterState, useServerFn } from "@tanstack/react-start";
+import { useNavigate, useRouterState } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import {
   settingsQuery,
   branchesQuery,
@@ -81,7 +82,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const { data: wide = [] } = useQuery(wideBannersQuery(true));
 
   const navigate = useNavigate();
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
   const submit = useServerFn(submitLead);
 
   const config = useMemo<AppConfig>(() => {
