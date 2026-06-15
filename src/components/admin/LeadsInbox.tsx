@@ -256,7 +256,37 @@ export function LeadsInbox() {
           <option value="">كل الخدمات</option>
           {services.map((s) => <option key={s.id} value={s.id}>{s.title}</option>)}
         </select>
+
+        <label className="text-xs flex items-center gap-2 rounded-lg border border-slate-200 px-2 py-1.5 bg-white">
+          <span className="text-slate-500 font-bold shrink-0">من</span>
+          <input
+            type="date"
+            value={dateFrom}
+            onChange={(e) => { setDateFrom(e.target.value); setPage(1); }}
+            className="w-full text-xs bg-transparent outline-none"
+          />
+        </label>
+        <label className="text-xs flex items-center gap-2 rounded-lg border border-slate-200 px-2 py-1.5 bg-white">
+          <span className="text-slate-500 font-bold shrink-0">إلى</span>
+          <input
+            type="date"
+            value={dateTo}
+            onChange={(e) => { setDateTo(e.target.value); setPage(1); }}
+            className="w-full text-xs bg-transparent outline-none"
+          />
+        </label>
+        <div className="sm:col-span-2 lg:col-span-4 flex items-center justify-between gap-2 text-[11px] text-slate-500 pt-1">
+          <span>
+            الفلاتر النشطة: <strong className="text-[#002c6d]">{activeFilterCount}</strong> · الإعدادات محفوظة تلقائياً في المتصفح
+          </span>
+          {activeFilterCount > 0 && (
+            <button onClick={resetFilters} className="inline-flex items-center gap-1 text-red-600 hover:bg-red-50 px-2 py-1 rounded font-bold">
+              <X className="w-3 h-3" /> مسح كل الفلاتر
+            </button>
+          )}
+        </div>
       </div>
+
 
       {filtered.length === 0 ? (
         <div className="text-center py-12 text-slate-400 text-sm border-2 border-dashed border-slate-200 rounded-xl">
