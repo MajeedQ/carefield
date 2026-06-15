@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
             {config.theme?.logoText || 'مركز مجال العناية للرعاية النهارية'}
           </h2>
           <p className="text-xs md:text-sm text-[#434651] max-w-lg mx-auto leading-relaxed font-light">
-            {config.theme?.logoSubtitle || 'رعاية طبية وسلوكية وتأهيلية متخصصة تحت إشراف فريق مرخص ومؤهل في بيئة آمنة ومحفزة.'} حاصل على تقييم <strong className="font-semibold text-[#002c6d]">A+</strong> من قبل وزارة الموارد البشرية والتنمية الاجتماعية بمدينة الرياض.
+            {config.footerDescription || 'رعاية طبية وسلوكية وتأهيلية متخصصة تحت إشراف فريق مرخص ومؤهل في بيئة آمنة ومحفزة. حاصل على تقييم A+ من وزارة الموارد البشرية والتنمية الاجتماعية بمدينة الرياض.'}
           </p>
         </div>
 
