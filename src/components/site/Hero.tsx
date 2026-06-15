@@ -134,6 +134,9 @@ export const Hero: React.FC = () => {
                     alt={slides[activeSlide]?.title} 
                     className="w-full h-full object-cover select-none transition-transform duration-700 hover:scale-105"
                     referrerPolicy="no-referrer"
+                    loading={activeSlide === 0 ? "eager" : "lazy"}
+                    fetchPriority={activeSlide === 0 ? "high" : "auto"}
+                    decoding="async"
                   />
 
                   {/* Micro-Interaction Tag */}
