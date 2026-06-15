@@ -84,7 +84,19 @@ function AdminPage() {
 
       <main className="max-w-7xl mx-auto px-4 py-6">
         {tab === "settings" && <CmsSettings />}
+        {tab === "homepage" && <ContentEditor title="محتوى الواجهة الرئيسية والنموذج" column="content" fields={HOMEPAGE_FIELDS} />}
+        {tab === "seo" && <ContentEditor title="عناوين ووصف SEO لكل صفحة" column="seo" fields={SEO_FIELDS} />}
         {tab === "leads" && <LeadsInbox />}
+        {tab === "stats" && (
+          <CmsCrud
+            table="hero_stats" queryKey="hero_stats" queryOpts={heroStatsQuery(false)}
+            title="إحصائيات الهيرو" primary="num"
+            fields={[
+              { key: "num", label: "الرقم/النص الأبرز (مثل +٨ سنوات)" },
+              { key: "label", label: "الوصف" },
+            ]}
+          />
+        )}
         {tab === "banners" && <BannerManager />}
         {tab === "gallery" && <GalleryManager />}
         {tab === "hero" && (
