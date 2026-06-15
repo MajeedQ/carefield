@@ -6,6 +6,7 @@ import { ServicesGrid } from "@/components/site/ServicesGrid";
 import { ServiceDetailModal } from "@/components/site/ServiceDetailModal";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppBubble } from "@/components/site/WhatsAppBubble";
+import { SeoOverride } from "@/components/site/SeoOverride";
 import type { ServiceItem } from "@/lib/site-types";
 
 export const Route = createFileRoute("/services")({
@@ -37,6 +38,7 @@ function ServicesPage() {
       </main>
       <Footer />
       <WhatsAppBubble />
+      <SeoOverride page="services" />
       {selected && (
         <ServiceDetailModal
           service={selected}

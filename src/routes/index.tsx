@@ -14,6 +14,7 @@ import { LeadForm } from "@/components/site/LeadForm";
 import { FAQSection } from "@/components/site/FAQSection";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppBubble } from "@/components/site/WhatsAppBubble";
+import { SeoOverride } from "@/components/site/SeoOverride";
 import type { ServiceItem } from "@/lib/site-types";
 
 export const Route = createFileRoute("/")({
@@ -57,6 +58,7 @@ function HomePage() {
       </main>
       <Footer />
       <WhatsAppBubble />
+      <SeoOverride page="home" />
       {selectedService && (
         <ServiceDetailModal
           service={selectedService}

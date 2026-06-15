@@ -4,6 +4,7 @@ import { RegistrationBanner } from "@/components/site/RegistrationBanner";
 import { BranchLocations } from "@/components/site/BranchLocations";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppBubble } from "@/components/site/WhatsAppBubble";
+import { SeoOverride } from "@/components/site/SeoOverride";
 
 export const Route = createFileRoute("/branches")({
   head: () => ({
@@ -33,6 +34,7 @@ function BranchesPage() {
       </main>
       <Footer />
       <WhatsAppBubble />
+      <SeoOverride page="branches" />
     </>
   );
 }
