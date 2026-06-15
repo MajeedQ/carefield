@@ -124,4 +124,8 @@ export interface AppConfig {
   heroSlides: { id: string; title: string; subtitle: string; imageUrl: string; tag: string }[];
   heroStats: { num: string; label: string }[];
   aboutSection: AboutSectionData;
+  content: Record<string, string>;
+  seo: Record<string, string>;
+  footerDescription: string;
+  footerCopyright: string;
 }

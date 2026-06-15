@@ -40,6 +40,9 @@ const fields: { key: keyof DbSettings; label: string; type?: "text" | "color" | 
   { key: "about_mission", label: "الرسالة", type: "textarea", section: "من نحن" },
   { key: "about_image", label: "رابط صورة من نحن", section: "من نحن" },
 
+  { key: "footer_description" as any, label: "وصف الفوتر", type: "textarea", section: "الفوتر" },
+  { key: "footer_copyright" as any, label: "نص حقوق الفوتر", type: "textarea", section: "الفوتر" },
+
   { key: "ga_id", label: "Google Analytics ID", section: "بيكسلات التسويق" },
   { key: "meta_pixel_id", label: "Meta (Facebook) Pixel", section: "بيكسلات التسويق" },
   { key: "snap_pixel_id", label: "Snapchat Pixel", section: "بيكسلات التسويق" },

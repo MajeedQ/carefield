@@ -5,6 +5,7 @@ import { AboutSection } from "@/components/site/AboutSection";
 import { GallerySection } from "@/components/site/GallerySection";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppBubble } from "@/components/site/WhatsAppBubble";
+import { SeoOverride } from "@/components/site/SeoOverride";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -38,6 +39,7 @@ function AboutPage() {
       </main>
       <Footer />
       <WhatsAppBubble />
+      <SeoOverride page="about" />
     </>
   );
 }

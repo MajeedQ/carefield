@@ -14,6 +14,7 @@ import {
   branchesQuery,
   galleryQuery,
   heroSlidesQuery,
+  heroStatsQuery,
   trustBadgesQuery,
   servicesQuery,
   faqsQuery,
@@ -70,6 +71,10 @@ const FALLBACK: AppConfig = {
   aboutSection: {
     title: "نبذة عن المركز", subtitle: "", description: "", vision: "", mission: "", goals: [], imageUrl: "",
   },
+  content: {},
+  seo: {},
+  footerDescription: "",
+  footerCopyright: "",
 };
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -81,6 +86,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const { data: services = [] } = useQuery(servicesQuery(true));
   const { data: faqs = [] } = useQuery(faqsQuery(true));
   const { data: wide = [] } = useQuery(wideBannersQuery(true));
+  const { data: stats = [] } = useQuery(heroStatsQuery(true));
 
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -133,14 +139,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       heroSlides: heroSlides.map((h) => ({
         id: h.id, title: h.title, subtitle: h.subtitle, imageUrl: h.image_url, tag: h.tag ?? "",
       })),
-      heroStats: FALLBACK.heroStats,
+      heroStats: stats.length ? stats.map((st) => ({ num: st.num, label: st.label })) : FALLBACK.heroStats,
       aboutSection: {
         title: s.about_title, subtitle: s.about_subtitle, description: s.about_description,
         vision: s.about_vision, mission: s.about_mission, goals: s.about_goals ?? [],
         imageUrl: s.about_image ?? "",
       },
+      content: (s as any).content ?? {},
+      seo: (s as any).seo ?? {},
+      footerDescription: (s as any).footer_description ?? "",
+      footerCopyright: (s as any).footer_copyright ?? "",
     };
-  }, [s, branches, gallery, heroSlides, trust, services, faqs, wide]);
+  }, [s, branches, gallery, heroSlides, trust, services, faqs, wide, stats]);
 
   const activePage = useMemo<AppContextType["activePage"]>(() => {
     if (pathname.startsWith("/about")) return "about";

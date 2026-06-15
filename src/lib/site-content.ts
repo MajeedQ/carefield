@@ -42,6 +42,7 @@ export type DbSettings = {
   phone1: string;
   phone2: string;
   whatsapp: string;
+  whatsapp_message: string;
   twitter: string;
   instagram: string;
   snapchat: string;
@@ -66,6 +67,18 @@ export type DbSettings = {
   about_goals: string[];
   about_image: string;
   sheets_webhook_url: string;
+  content: Record<string, string>;
+  seo: Record<string, string>;
+  footer_description: string;
+  footer_copyright: string;
+};
+
+export type DbHeroStat = {
+  id: string;
+  num: string;
+  label: string;
+  sort_order: number;
+  active: boolean;
 };
 
 export type DbBranch = {
@@ -181,6 +194,9 @@ export const faqsQuery = (onlyActive = true) =>
 
 export const wideBannersQuery = (onlyActive = true) =>
   sortedList<DbWideBanner>("wide_banners", "wide_banners", onlyActive);
+
+export const heroStatsQuery = (onlyActive = true) =>
+  sortedList<DbHeroStat>("hero_stats", "hero_stats", onlyActive);
 
 export const settingsQuery = () =>
   queryOptions({

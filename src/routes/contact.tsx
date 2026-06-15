@@ -5,6 +5,7 @@ import { RegistrationBanner } from "@/components/site/RegistrationBanner";
 import { LeadForm } from "@/components/site/LeadForm";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppBubble } from "@/components/site/WhatsAppBubble";
+import { SeoOverride } from "@/components/site/SeoOverride";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -39,6 +40,7 @@ function ContactPage() {
       </main>
       <Footer />
       <WhatsAppBubble />
+      <SeoOverride page="contact" />
     </>
   );
 }

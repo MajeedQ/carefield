@@ -206,6 +206,36 @@ export type Database = {
         }
         Relationships: []
       }
+      hero_stats: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          label: string
+          num: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          label: string
+          num: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          label?: string
+          num?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           age: string | null
@@ -308,9 +338,12 @@ export type Database = {
           announce_text: string
           background_color: string
           border_radius: string
+          content: Json
           email: string | null
           font_family: string
           font_scale: string
+          footer_copyright: string
+          footer_description: string
           ga_id: string | null
           id: string
           instagram: string | null
@@ -321,6 +354,7 @@ export type Database = {
           phone1: string | null
           phone2: string | null
           primary_color: string
+          seo: Json
           sheets_webhook_url: string | null
           snap_pixel_id: string | null
           snapchat: string | null
@@ -349,9 +383,12 @@ export type Database = {
           announce_text?: string
           background_color?: string
           border_radius?: string
+          content?: Json
           email?: string | null
           font_family?: string
           font_scale?: string
+          footer_copyright?: string
+          footer_description?: string
           ga_id?: string | null
           id?: string
           instagram?: string | null
@@ -362,6 +399,7 @@ export type Database = {
           phone1?: string | null
           phone2?: string | null
           primary_color?: string
+          seo?: Json
           sheets_webhook_url?: string | null
           snap_pixel_id?: string | null
           snapchat?: string | null
@@ -390,9 +428,12 @@ export type Database = {
           announce_text?: string
           background_color?: string
           border_radius?: string
+          content?: Json
           email?: string | null
           font_family?: string
           font_scale?: string
+          footer_copyright?: string
+          footer_description?: string
           ga_id?: string | null
           id?: string
           instagram?: string | null
@@ -403,6 +444,7 @@ export type Database = {
           phone1?: string | null
           phone2?: string | null
           primary_color?: string
+          seo?: Json
           sheets_webhook_url?: string | null
           snap_pixel_id?: string | null
           snapchat?: string | null
