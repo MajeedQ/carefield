@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronRight, ChevronLeft, Calendar, Trash2, Plus, Edit2, Link, Image as ImageIcon } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
-import { WideBanner } from '@/lib/pixels';
+import type { WideBanner } from '@/lib/site-types';
 
 export const WideBannerCarousel: React.FC = () => {
   const { config, isAdminMode, updateConfig } = useApp();
