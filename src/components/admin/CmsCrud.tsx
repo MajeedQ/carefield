@@ -1,7 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { Trash2, Plus, Save, X, ChevronUp, ChevronDown } from "lucide-react";
+import { Trash2, Plus, Save, X, ChevronUp, ChevronDown, Upload, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { uploadMedia } from "@/lib/storage";
 
 export type CmsField = {
   key: string;
