@@ -294,11 +294,11 @@ export const LeadForm: React.FC<LeadFormProps> = ({
                   {isLoading ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" />
-                      <span>جاري تشفير البيانات وإرسال طلب الحجز...</span>
+                      <span>{c.form_submit_loading || 'جاري تشفير البيانات وإرسال طلب الحجز...'}</span>
                     </>
                   ) : (
                     <>
-                      <span>تقديم طلب الاستشارة المجانية</span>
+                      <span>{c.form_submit || 'تقديم طلب الاستشارة المجانية'}</span>
                       <Send className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform duration-300" />
                     </>
                   )}
