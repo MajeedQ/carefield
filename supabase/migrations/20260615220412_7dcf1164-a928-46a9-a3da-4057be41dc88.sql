@@ -1,0 +1,1 @@
+ALTER TABLE public.site_settings ADD COLUMN IF NOT EXISTS whatsapp_message TEXT NOT NULL DEFAULT 'السلام عليكم ورحمة الله وبركاته، أود الاستفسار عن حجز مقعد وتحديد موعد التقييم المجاني في مركز مجال العناية للرعاية النهارية.';

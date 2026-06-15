@@ -17,7 +17,8 @@ const fields: { key: keyof DbSettings; label: string; type?: "text" | "color" | 
 
   { key: "phone1", label: "جوال 1", section: "تواصل" },
   { key: "phone2", label: "جوال 2", section: "تواصل" },
-  { key: "whatsapp", label: "واتساب (رقم دولي بدون +)", section: "تواصل" },
+  { key: "whatsapp", label: "واتساب (رقم دولي بدون + أو رابط wa.me كامل)", section: "تواصل" },
+  { key: "whatsapp_message" as any, label: "نص رسالة الواتساب الافتراضي (يظهر في الهيدر والفوتر والفقاعة ورسالة نجاح النموذج)", type: "textarea", section: "تواصل" },
   { key: "email", label: "البريد الإلكتروني", section: "تواصل" },
   { key: "twitter", label: "X (تويتر)", section: "تواصل" },
   { key: "instagram", label: "إنستغرام", section: "تواصل" },

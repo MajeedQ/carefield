@@ -44,6 +44,7 @@ const FALLBACK: AppConfig = {
   banners: [],
   socialMedia: {
     phone1: "0560098881", phone2: "0546461647", whatsapp: "966560098881",
+    whatsappMessage: "السلام عليكم ورحمة الله وبركاته، أود الاستفسار عن حجز مقعد وتحديد موعد التقييم المجاني في مركز مجال العناية للرعاية النهارية.",
     twitter: "", instagram: "", snapchat: "", tiktok: "", email: "care.f.center@gmail.com", linkedin: "",
   },
   googleSheetsUrl: "",
@@ -94,6 +95,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       })),
       socialMedia: {
         phone1: s.phone1 ?? "", phone2: s.phone2 ?? "", whatsapp: s.whatsapp ?? "",
+        whatsappMessage: (s as any).whatsapp_message ?? FALLBACK.socialMedia.whatsappMessage,
         twitter: s.twitter ?? "", instagram: s.instagram ?? "", snapchat: s.snapchat ?? "",
         tiktok: s.tiktok ?? "", email: s.email ?? "", linkedin: s.linkedin ?? "",
       },

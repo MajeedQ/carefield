@@ -11,7 +11,10 @@ import { useApp } from '@/context/AppContext';
 export const Header: React.FC = () => {
   const { config, activePage, setActivePage } = useApp();
   const waRaw = String(config.socialMedia.whatsapp || '966560098881').trim();
-  const whatsappUrl = waRaw.startsWith('http') ? waRaw : `https://wa.me/${waRaw.replace(/\+/g, '')}`;
+  const waText = encodeURIComponent(config.socialMedia.whatsappMessage || '');
+  const whatsappUrl = waRaw.startsWith('http')
+    ? (waText && !waRaw.includes('?') ? `${waRaw}?text=${waText}` : waRaw)
+    : `https://wa.me/${waRaw.replace(/\+/g, '')}${waText ? `?text=${waText}` : ''}`;
 
   const navItems = [
     { id: 'home' as const, label: 'الرئيسية', icon: Home },

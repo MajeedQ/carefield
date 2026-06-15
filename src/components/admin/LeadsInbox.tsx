@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Trash2, Phone, MapPin, Calendar, Download, Search, X, ArrowUp, ArrowDown, ChevronRight, ChevronLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -82,14 +82,44 @@ export function LeadsInbox() {
   const { data: services = [] } = useQuery(servicesQuery(false));
   const { data: branches = [] } = useQuery(branchesQuery(false));
 
+  // Persist filter state across reloads
+  const STORAGE_KEY = "leadsInboxFilters.v1";
+  const [hydrated, setHydrated] = useState(false);
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
   const [branch, setBranch] = useState("");
   const [service, setService] = useState("");
+  const [dateFrom, setDateFrom] = useState("");
+  const [dateTo, setDateTo] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("created_at");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(25);
+
+  // Load saved filters once on client
+  useEffect(() => {
+    try {
+      const raw = typeof window !== "undefined" ? localStorage.getItem(STORAGE_KEY) : null;
+      if (raw) {
+        const s = JSON.parse(raw);
+        setSearch(s.search ?? ""); setStatus(s.status ?? ""); setBranch(s.branch ?? "");
+        setService(s.service ?? ""); setDateFrom(s.dateFrom ?? ""); setDateTo(s.dateTo ?? "");
+        setSortKey(s.sortKey ?? "created_at"); setSortDir(s.sortDir ?? "desc");
+        setPageSize(s.pageSize ?? 25);
+      }
+    } catch {}
+    setHydrated(true);
+  }, []);
+
+  // Persist on change
+  useEffect(() => {
+    if (!hydrated) return;
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        search, status, branch, service, dateFrom, dateTo, sortKey, sortDir, pageSize,
+      }));
+    } catch {}
+  }, [hydrated, search, status, branch, service, dateFrom, dateTo, sortKey, sortDir, pageSize]);
 
   const update = useMutation({
     mutationFn: async (l: Partial<DbLead> & { id: string }) => {
@@ -118,10 +148,17 @@ export function LeadsInbox() {
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
+    const fromTs = dateFrom ? new Date(dateFrom + "T00:00:00").getTime() : null;
+    const toTs = dateTo ? new Date(dateTo + "T23:59:59").getTime() : null;
     const rows = leads.filter((l) => {
       if (status && l.status !== status) return false;
       if (branch && !(l.district || "").toLowerCase().includes(branch.toLowerCase())) return false;
       if (service && (l.service_id || "") !== service) return false;
+      if (fromTs || toTs) {
+        const t = new Date(l.created_at).getTime();
+        if (fromTs && t < fromTs) return false;
+        if (toTs && t > toTs) return false;
+      }
       if (!q) return true;
       return (
         l.full_name.toLowerCase().includes(q) ||
@@ -140,7 +177,13 @@ export function LeadsInbox() {
       return sortDir === "asc" ? cmp : -cmp;
     });
     return rows;
-  }, [leads, search, status, branch, service, sortKey, sortDir]);
+  }, [leads, search, status, branch, service, dateFrom, dateTo, sortKey, sortDir]);
+
+  const resetFilters = () => {
+    setSearch(""); setStatus(""); setBranch(""); setService("");
+    setDateFrom(""); setDateTo(""); setPage(1);
+  };
+  const activeFilterCount = [search, status, branch, service, dateFrom, dateTo].filter(Boolean).length;
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
   const currentPage = Math.min(page, totalPages);
@@ -213,7 +256,37 @@ export function LeadsInbox() {
           <option value="">كل الخدمات</option>
           {services.map((s) => <option key={s.id} value={s.id}>{s.title}</option>)}
         </select>
+
+        <label className="text-xs flex items-center gap-2 rounded-lg border border-slate-200 px-2 py-1.5 bg-white">
+          <span className="text-slate-500 font-bold shrink-0">من</span>
+          <input
+            type="date"
+            value={dateFrom}
+            onChange={(e) => { setDateFrom(e.target.value); setPage(1); }}
+            className="w-full text-xs bg-transparent outline-none"
+          />
+        </label>
+        <label className="text-xs flex items-center gap-2 rounded-lg border border-slate-200 px-2 py-1.5 bg-white">
+          <span className="text-slate-500 font-bold shrink-0">إلى</span>
+          <input
+            type="date"
+            value={dateTo}
+            onChange={(e) => { setDateTo(e.target.value); setPage(1); }}
+            className="w-full text-xs bg-transparent outline-none"
+          />
+        </label>
+        <div className="sm:col-span-2 lg:col-span-4 flex items-center justify-between gap-2 text-[11px] text-slate-500 pt-1">
+          <span>
+            الفلاتر النشطة: <strong className="text-[#002c6d]">{activeFilterCount}</strong> · الإعدادات محفوظة تلقائياً في المتصفح
+          </span>
+          {activeFilterCount > 0 && (
+            <button onClick={resetFilters} className="inline-flex items-center gap-1 text-red-600 hover:bg-red-50 px-2 py-1 rounded font-bold">
+              <X className="w-3 h-3" /> مسح كل الفلاتر
+            </button>
+          )}
+        </div>
       </div>
+
 
       {filtered.length === 0 ? (
         <div className="text-center py-12 text-slate-400 text-sm border-2 border-dashed border-slate-200 rounded-xl">
