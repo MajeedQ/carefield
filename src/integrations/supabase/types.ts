@@ -355,7 +355,6 @@ export type Database = {
           phone2: string | null
           primary_color: string
           seo: Json
-          sheets_webhook_url: string | null
           snap_pixel_id: string | null
           snapchat: string | null
           spacing_scale: string
@@ -400,7 +399,6 @@ export type Database = {
           phone2?: string | null
           primary_color?: string
           seo?: Json
-          sheets_webhook_url?: string | null
           snap_pixel_id?: string | null
           snapchat?: string | null
           spacing_scale?: string
@@ -445,7 +443,6 @@ export type Database = {
           phone2?: string | null
           primary_color?: string
           seo?: Json
-          sheets_webhook_url?: string | null
           snap_pixel_id?: string | null
           snapchat?: string | null
           spacing_scale?: string
