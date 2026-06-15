@@ -62,6 +62,75 @@ export type Database = {
         }
         Relationships: []
       }
+      branches: {
+        Row: {
+          active: boolean
+          address: string
+          created_at: string
+          id: string
+          map_url: string
+          name: string
+          phone: string | null
+          share_url: string | null
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          address?: string
+          created_at?: string
+          id?: string
+          map_url?: string
+          name: string
+          phone?: string | null
+          share_url?: string | null
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          address?: string
+          created_at?: string
+          id?: string
+          map_url?: string
+          name?: string
+          phone?: string | null
+          share_url?: string | null
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      faqs: {
+        Row: {
+          active: boolean
+          answer: string
+          created_at: string
+          id: string
+          question: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          answer: string
+          created_at?: string
+          id?: string
+          question: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          answer?: string
+          created_at?: string
+          id?: string
+          question?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       gallery_items: {
         Row: {
           active: boolean
@@ -101,6 +170,279 @@ export type Database = {
         }
         Relationships: []
       }
+      hero_slides: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          image_url: string
+          sort_order: number
+          subtitle: string
+          tag: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          image_url?: string
+          sort_order?: number
+          subtitle?: string
+          tag?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          image_url?: string
+          sort_order?: number
+          subtitle?: string
+          tag?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      leads: {
+        Row: {
+          age: string | null
+          created_at: string
+          district: string
+          full_name: string
+          id: string
+          notes: string | null
+          phone: string
+          service_id: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          age?: string | null
+          created_at?: string
+          district?: string
+          full_name: string
+          id?: string
+          notes?: string | null
+          phone: string
+          service_id?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          age?: string | null
+          created_at?: string
+          district?: string
+          full_name?: string
+          id?: string
+          notes?: string | null
+          phone?: string
+          service_id?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          active: boolean
+          benefits: string[]
+          created_at: string
+          detailed_description: string
+          icon_name: string
+          id: string
+          sessions_per_week: string | null
+          short_description: string
+          sort_order: number
+          target_age: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          benefits?: string[]
+          created_at?: string
+          detailed_description?: string
+          icon_name?: string
+          id?: string
+          sessions_per_week?: string | null
+          short_description?: string
+          sort_order?: number
+          target_age?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          benefits?: string[]
+          created_at?: string
+          detailed_description?: string
+          icon_name?: string
+          id?: string
+          sessions_per_week?: string | null
+          short_description?: string
+          sort_order?: number
+          target_age?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          about_description: string
+          about_goals: string[]
+          about_image: string | null
+          about_mission: string
+          about_subtitle: string
+          about_title: string
+          about_vision: string
+          accent_color: string
+          announce_bg: string
+          announce_color: string
+          announce_enabled: boolean
+          announce_link: string | null
+          announce_speed: string
+          announce_text: string
+          background_color: string
+          border_radius: string
+          email: string | null
+          font_family: string
+          font_scale: string
+          ga_id: string | null
+          id: string
+          instagram: string | null
+          linkedin: string | null
+          logo_subtitle: string
+          logo_text: string
+          meta_pixel_id: string | null
+          phone1: string | null
+          phone2: string | null
+          primary_color: string
+          sheets_webhook_url: string | null
+          snap_pixel_id: string | null
+          snapchat: string | null
+          spacing_scale: string
+          tiktok: string | null
+          tiktok_pixel_id: string | null
+          twitter: string | null
+          updated_at: string
+          whatsapp: string | null
+        }
+        Insert: {
+          about_description?: string
+          about_goals?: string[]
+          about_image?: string | null
+          about_mission?: string
+          about_subtitle?: string
+          about_title?: string
+          about_vision?: string
+          accent_color?: string
+          announce_bg?: string
+          announce_color?: string
+          announce_enabled?: boolean
+          announce_link?: string | null
+          announce_speed?: string
+          announce_text?: string
+          background_color?: string
+          border_radius?: string
+          email?: string | null
+          font_family?: string
+          font_scale?: string
+          ga_id?: string | null
+          id?: string
+          instagram?: string | null
+          linkedin?: string | null
+          logo_subtitle?: string
+          logo_text?: string
+          meta_pixel_id?: string | null
+          phone1?: string | null
+          phone2?: string | null
+          primary_color?: string
+          sheets_webhook_url?: string | null
+          snap_pixel_id?: string | null
+          snapchat?: string | null
+          spacing_scale?: string
+          tiktok?: string | null
+          tiktok_pixel_id?: string | null
+          twitter?: string | null
+          updated_at?: string
+          whatsapp?: string | null
+        }
+        Update: {
+          about_description?: string
+          about_goals?: string[]
+          about_image?: string | null
+          about_mission?: string
+          about_subtitle?: string
+          about_title?: string
+          about_vision?: string
+          accent_color?: string
+          announce_bg?: string
+          announce_color?: string
+          announce_enabled?: boolean
+          announce_link?: string | null
+          announce_speed?: string
+          announce_text?: string
+          background_color?: string
+          border_radius?: string
+          email?: string | null
+          font_family?: string
+          font_scale?: string
+          ga_id?: string | null
+          id?: string
+          instagram?: string | null
+          linkedin?: string | null
+          logo_subtitle?: string
+          logo_text?: string
+          meta_pixel_id?: string | null
+          phone1?: string | null
+          phone2?: string | null
+          primary_color?: string
+          sheets_webhook_url?: string | null
+          snap_pixel_id?: string | null
+          snapchat?: string | null
+          spacing_scale?: string
+          tiktok?: string | null
+          tiktok_pixel_id?: string | null
+          twitter?: string | null
+          updated_at?: string
+          whatsapp?: string | null
+        }
+        Relationships: []
+      }
+      trust_badges: {
+        Row: {
+          active: boolean
+          created_at: string
+          icon: string
+          id: string
+          sort_order: number
+          text: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          icon?: string
+          id?: string
+          sort_order?: number
+          text: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          icon?: string
+          id?: string
+          sort_order?: number
+          text?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -119,6 +461,48 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+        }
+        Relationships: []
+      }
+      wide_banners: {
+        Row: {
+          active: boolean
+          button_text: string | null
+          created_at: string
+          id: string
+          image_url: string
+          link_url: string | null
+          sort_order: number
+          subtitle: string
+          tag: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          button_text?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string
+          link_url?: string | null
+          sort_order?: number
+          subtitle?: string
+          tag?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          button_text?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string
+          link_url?: string | null
+          sort_order?: number
+          subtitle?: string
+          tag?: string | null
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
