@@ -177,22 +177,7 @@ export const Footer: React.FC = () => {
         </p>
       </div>
 
-      {/* Fixed bottom floating green WhatsApp bubble matching screenshots */}
-      {config.socialMedia.whatsapp && (
-        <a 
-          href={whatsappUrl} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          aria-label="تواصل مباشر معنا عبر واتساب"
-          className="fixed bottom-6 right-6 z-45 bg-[#25D366] text-white p-3.5 rounded-full shadow-lg hover:scale-110 active:scale-95 transition-transform duration-300 flex items-center justify-center hover:shadow-emerald-500/20 group pointer-events-auto"
-          id="floating-whatsapp"
-        >
-          <MessageCircle className="w-7 h-7 fill-current text-white shrink-0" />
-          <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 ease-in-out font-bold text-xs pl-0 group-hover:pl-2 whitespace-nowrap">
-            تواصل معنا واتساب
-          </span>
-        </a>
-      )}
+      {/* Floating WhatsApp bubble lives in <WhatsAppBubble /> mounted at the route level */}
 
     </footer>
   );
