@@ -260,9 +260,9 @@ export const WideBannerCarousel: React.FC = () => {
                   </span>
                 )}
 
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white leading-tight drop-shadow-sm">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white leading-tight drop-shadow-sm">
                   {activeBanner.title}
-                </h2>
+                </h3>
 
                 <p className="text-sm sm:text-base text-slate-200/90 leading-relaxed font-light drop-shadow-2xs">
                   {activeBanner.subtitle}

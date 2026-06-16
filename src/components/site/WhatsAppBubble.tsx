@@ -49,6 +49,7 @@ export const WhatsAppBubble: React.FC = () => {
               }}
               className="absolute top-2 left-2 w-5 h-5 bg-slate-50 hover:bg-slate-100 text-slate-400 hover:text-slate-600 rounded-full flex items-center justify-center transition-colors cursor-pointer"
               title="إغلاق"
+              aria-label="إغلاق نافذة الواتساب"
             >
               <X className="w-3 h-3" />
             </button>
