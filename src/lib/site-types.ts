@@ -20,6 +20,29 @@ export interface GalleryItem {
   category: string;
   thumbnailUrl: string;
   videoUrl?: string;
+  description?: string;
+  externalVideoUrl?: string;
+}
+
+export interface GallerySettings {
+  layout: "grid" | "slider" | "carousel";
+  columns: number;
+  autoplay: boolean;
+  autoplaySpeed: number;
+  showTitles: boolean;
+  showCategories: boolean;
+  showArrows: boolean;
+  showDots: boolean;
+  title: string;
+  subtitle: string;
+  description: string;
+}
+  id: string;
+  type: "image" | "video";
+  title: string;
+  category: string;
+  thumbnailUrl: string;
+  videoUrl?: string;
 }
 
 export interface LeadSubmission {
