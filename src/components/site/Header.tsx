@@ -35,24 +35,24 @@ export const Header: React.FC = () => {
 
   return (
     <header id="main-header" className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-blue-50/50 shadow-[0_4px_24px_-4px_rgba(0,44,109,0.03)] transition-all duration-300">
-      
+
       {/* Top Brand & Status Row */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between gap-4">
-        
+      <div className="max-w-7xl mx-auto px-3 md:px-8 py-3 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 lg:flex lg:justify-between">
+
         {/* RIGHT SIDE: Corporate Logo & Responsive Textual Brand Identity */}
-        <div className="flex items-center justify-start shrink-0">
-          <button 
+        <div className="flex items-center justify-start min-w-0">
+          <button
             type="button"
-            onClick={() => handlePageChange('home')} 
-            className="flex items-center gap-3 text-right outline-hidden hover:opacity-95 transition-all cursor-pointer"
+            onClick={() => handlePageChange('home')}
+            className="flex items-center gap-2.5 text-right outline-hidden hover:opacity-95 transition-all cursor-pointer min-w-0 w-full"
             id="header-logo-link"
           >
             <CareFieldLogo />
-            <div className="flex flex-col text-right">
-              <span className="font-black text-xs sm:text-xs md:text-sm lg:text-[16px] text-[#002c6d] tracking-tight leading-tight">
+            <div className="flex flex-col text-right min-w-0 flex-1">
+              <span className="font-black text-[11px] sm:text-xs md:text-sm lg:text-[16px] text-[#002c6d] tracking-tight leading-tight line-clamp-2">
                 {config.theme?.logoText || 'مركز مجال العناية للرعاية النهارية'}
               </span>
-              <span className="hidden xs:inline-block text-[9px] md:text-[9.5px] text-[#775a19] font-black mt-0.5 tracking-wide leading-none">
+              <span className="hidden sm:inline-block text-[9px] md:text-[9.5px] text-[#775a19] font-black mt-0.5 tracking-wide leading-tight line-clamp-1">
                 {config.theme?.logoSubtitle || 'رعاية طبية وسلوكية وتأهيلية متخصصة تحت إشراف فريق مرخص ومؤهل'}
               </span>
             </div>
@@ -70,11 +70,11 @@ export const Header: React.FC = () => {
               <span dir="ltr" className="font-mono text-[11px] mt-0.5 text-[#002c6d]">{config.socialMedia.phone1}</span>
             </div>
           </a>
-          
-          <button 
+
+          <button
             type="button"
-            onClick={() => handlePageChange('branches')} 
-            className="hidden xl:flex items-center gap-2 text-right cursor-pointer" 
+            onClick={() => handlePageChange('branches')}
+            className="hidden xl:flex items-center gap-2 text-right cursor-pointer"
             id="header-branches-indicator"
           >
             <div className="w-8 h-8 rounded-lg bg-[#002c6d]/10 flex items-center justify-center text-[#002c6d]">
@@ -88,35 +88,35 @@ export const Header: React.FC = () => {
         </div>
 
         {/* LEFT SIDE: CTA quick buttons */}
-        <div className="flex items-center gap-2 shrink-0">
-          <button 
+        <div className="flex items-center gap-1.5 shrink-0">
+          <button
             type="button"
-            onClick={() => handlePageChange('contact')} 
-            className="hidden sm:inline-flex items-center justify-center bg-[#002c6d] text-white px-4.5 py-2 rounded-xl text-[11px] font-black hover:bg-[#775a19] hover:shadow-md active:scale-95 transition-all duration-300 cursor-pointer"
+            onClick={() => handlePageChange('contact')}
+            className="hidden sm:inline-flex items-center justify-center bg-[#002c6d] text-white px-4 py-2 rounded-xl text-[11px] font-black hover:bg-[#775a19] hover:shadow-md active:scale-95 transition-all duration-300 cursor-pointer whitespace-nowrap"
           >
-            صفحة حجز موعد كشفية
+            حجز موعد كشف
           </button>
 
           {/* Quick-Contact Options for small screens */}
           <div className="flex sm:hidden items-center gap-1.5">
-            <a 
+            <a
               href={`tel:${config.socialMedia.phone1}`}
-              className="w-9 h-9 rounded-xl bg-blue-50 text-[#002c6d] flex items-center justify-center active:scale-90 transition-all border border-blue-100"
+              className="w-10 h-10 rounded-xl bg-blue-50 text-[#002c6d] flex items-center justify-center active:scale-90 transition-all border border-blue-100 shrink-0"
               title="اتصال سريع بالمركز"
               aria-label="اتصال هاتفي سريع بالمركز"
             >
               <Phone className="w-4 h-4" />
             </a>
-            <a 
+            <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center active:scale-90 transition-all border border-emerald-100"
+              className="w-10 h-10 rounded-xl bg-[#25D366] text-white flex items-center justify-center active:scale-90 transition-all shadow-sm shrink-0"
               title="محادثة واتساب مباشرة"
               aria-label="فتح محادثة واتساب مع المركز"
             >
-              <svg className="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24">
-                <path d="M12.012 1.012C18.062 1.012 23 5.95 23 12.012s-4.938 11.002-11.001 11.002c-1.879 0-3.642-.472-5.187-1.306l-4.721 1.542 1.572-4.597c-.928-1.583-1.464-3.418-1.464-5.385.001-6.062 4.938-11 11.001-11zm0 2.016c-4.953 0-8.985 4.032-8.985 8.984 0 1.83.548 3.535 1.492 4.966l-.979 2.862 2.94-.962c1.378.857 2.998 1.353 4.73 1.353 4.953 0 8.984-4.032 8.984-8.983-.001-4.952-4.032-8.984-8.983-8.984zm4.415 11.411c.245.122.399.204.46.306.061.102.061.59-.143 1.168-.204.577-1.183 1.134-1.631 1.173-.449.041-.898.118-2.898-.674-2-1.92-3.266-1.956-4.532-3.153-.85-.804-1.554-1.743-1.554-2.846 0-1.103.572-1.642.776-1.846.204-.204.449-.306.592-.306.143 0 .285.004.408.01.122.006.286-.041.449.347.163.388.551 1.346.592 1.448.041.102.061.224-.02.347-.082.122-.163.204-.245.306-.082.102-.164.204-.082.347.082.143.367.605.788.98.543.483 1.002.633 1.144.714.143.082.224.061.306-.02.082-.082.347-.408.449-.551.102-.143.204-.122.347-.061.143.061.918.432 1.082.513z" />
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden>
+                <path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26L3.4 19.795l3.255-1.602zM17.5 14.382c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
               </svg>
             </a>
           </div>
