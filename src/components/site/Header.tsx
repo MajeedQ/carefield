@@ -43,7 +43,7 @@ export const Header: React.FC = () => {
             className="flex items-center gap-3 text-right outline-hidden hover:opacity-95 transition-all cursor-pointer"
             id="header-logo-link"
           >
-            <CareFieldLogo className="h-14 w-14 sm:h-16 sm:w-16 lg:h-18 lg:w-18 shrink-0 transition-transform duration-300 hover:scale-105 drop-shadow-sm" />
+            <CareFieldLogo />
             <div className="flex flex-col text-right">
               <span className="font-black text-xs sm:text-xs md:text-sm lg:text-[16px] text-[#002c6d] tracking-tight leading-tight">
                 {config.theme?.logoText || 'مركز مجال العناية للرعاية النهارية'}
