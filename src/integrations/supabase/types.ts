@@ -363,6 +363,9 @@ export type Database = {
           twitter: string | null
           updated_at: string
           whatsapp: string | null
+          whatsapp_bubble_cta: string | null
+          whatsapp_bubble_tag: string | null
+          whatsapp_bubble_text: string | null
           whatsapp_message: string
         }
         Insert: {
@@ -407,6 +410,9 @@ export type Database = {
           twitter?: string | null
           updated_at?: string
           whatsapp?: string | null
+          whatsapp_bubble_cta?: string | null
+          whatsapp_bubble_tag?: string | null
+          whatsapp_bubble_text?: string | null
           whatsapp_message?: string
         }
         Update: {
@@ -451,6 +457,9 @@ export type Database = {
           twitter?: string | null
           updated_at?: string
           whatsapp?: string | null
+          whatsapp_bubble_cta?: string | null
+          whatsapp_bubble_tag?: string | null
+          whatsapp_bubble_text?: string | null
           whatsapp_message?: string
         }
         Relationships: []
