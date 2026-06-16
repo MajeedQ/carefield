@@ -107,7 +107,7 @@ export const WhatsAppBubble: React.FC = () => {
         <span className="absolute inset-0 rounded-full bg-[#25d366] animate-ping opacity-25 -z-10" />
         
         {/* Core Icon wrapper */}
-        <MessageCircle className="w-6.5 h-6.5 group-hover:scale-110 transition-transform duration-300" />
+        <WhatsAppIcon className="w-7 h-7 group-hover:scale-110 transition-transform duration-300" />
         
         {/* Ambient green dot active badge */}
         <span className="absolute -top-1 -right-0.5 flex h-3.5 w-3.5">
