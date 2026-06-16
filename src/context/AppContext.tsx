@@ -113,13 +113,22 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         googleAnalyticsId: s.ga_id ?? "", metaPixelId: s.meta_pixel_id ?? "",
         snapchatPixelId: s.snap_pixel_id ?? "", tiktokPixelId: s.tiktok_pixel_id ?? "",
       },
-      branches: branches.map((b) => ({
+      branches: branches.map((b: any) => ({
         id: b.id, name: b.name, address: b.address, mapUrl: b.map_url,
         phone: b.phone ?? "", shareUrl: b.share_url ?? "",
+        imageUrl: b.image_url ?? "",
+        description: b.description ?? "",
+        workingHours: b.working_hours ?? "",
+        servicesList: b.services_list ?? [],
+        features: b.features ?? [],
+        directions: b.directions ?? "",
       })),
-      gallery: gallery.map((g) => ({
+      gallery: gallery.map((g: any) => ({
         id: g.id, type: g.kind, title: g.title ?? "", category: g.category ?? "",
-        thumbnailUrl: g.thumbnail_url ?? g.url, videoUrl: g.kind === "video" ? g.url : undefined,
+        thumbnailUrl: g.thumbnail_url ?? g.url,
+        videoUrl: g.kind === "video" ? g.url : undefined,
+        description: g.description ?? "",
+        externalVideoUrl: g.external_video_url ?? "",
       })),
       announcement: {
         enabled: !!s.announce_enabled, text: s.announce_text ?? "", linkUrl: s.announce_link ?? "",
