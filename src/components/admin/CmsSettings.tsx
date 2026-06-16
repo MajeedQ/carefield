@@ -4,7 +4,7 @@ import { Save, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { settingsQuery, type DbSettings } from "@/lib/site-content";
 
-const fields: { key: keyof DbSettings; label: string; type?: "text" | "color" | "checkbox" | "textarea" | "select"; options?: string[]; section: string }[] = [
+const fields: { key: keyof DbSettings; label: string; type?: "text" | "color" | "checkbox" | "textarea" | "select" | "number"; options?: string[]; section: string }[] = [
   { key: "primary_color", label: "اللون الرئيسي", type: "color", section: "الثيم" },
   { key: "accent_color", label: "اللون الذهبي", type: "color", section: "الثيم" },
   { key: "background_color", label: "لون الخلفية", type: "color", section: "الثيم" },
