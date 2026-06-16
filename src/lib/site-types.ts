@@ -63,6 +63,12 @@ export interface BranchInfo {
   mapUrl: string;
   phone: string;
   shareUrl?: string;
+  imageUrl?: string;
+  description?: string;
+  workingHours?: string;
+  servicesList?: string[];
+  features?: string[];
+  directions?: string;
 }
 
 export interface WideBanner {
