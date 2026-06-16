@@ -84,6 +84,10 @@ export interface ThemeConfig {
   fontFamily: "system" | "inter" | "cairo" | "tajawal" | "grotesk";
   borderRadius: "none" | "small" | "medium" | "large" | "xlarge" | "full";
   spacingScale: "compact" | "normal" | "comfortable" | "loose";
+  logoImageUrl?: string;
+  logoSize?: "sm" | "md" | "lg" | "xl";
+  logoShape?: "circle" | "rounded" | "square";
+  logoShowFrame?: boolean;
 }
 
 export interface AboutSectionData {

@@ -348,6 +348,10 @@ export type Database = {
           id: string
           instagram: string | null
           linkedin: string | null
+          logo_image_url: string | null
+          logo_shape: string | null
+          logo_show_frame: boolean | null
+          logo_size: string | null
           logo_subtitle: string
           logo_text: string
           meta_pixel_id: string | null
@@ -395,6 +399,10 @@ export type Database = {
           id?: string
           instagram?: string | null
           linkedin?: string | null
+          logo_image_url?: string | null
+          logo_shape?: string | null
+          logo_show_frame?: boolean | null
+          logo_size?: string | null
           logo_subtitle?: string
           logo_text?: string
           meta_pixel_id?: string | null
@@ -442,6 +450,10 @@ export type Database = {
           id?: string
           instagram?: string | null
           linkedin?: string | null
+          logo_image_url?: string | null
+          logo_shape?: string | null
+          logo_show_frame?: boolean | null
+          logo_size?: string | null
           logo_subtitle?: string
           logo_text?: string
           meta_pixel_id?: string | null

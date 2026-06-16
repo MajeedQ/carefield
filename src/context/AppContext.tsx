@@ -131,6 +131,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         logoText: s.logo_text, logoSubtitle: s.logo_subtitle,
         fontScale: s.font_scale as any, fontFamily: s.font_family as any,
         borderRadius: s.border_radius as any, spacingScale: s.spacing_scale as any,
+        logoImageUrl: (s as any).logo_image_url ?? "",
+        logoSize: ((s as any).logo_size as any) ?? "md",
+        logoShape: ((s as any).logo_shape as any) ?? "circle",
+        logoShowFrame: (s as any).logo_show_frame !== false,
       },
       services: services.map<ServiceItem>((sv) => ({
         id: sv.id, title: sv.title, iconName: sv.icon_name,
