@@ -36,6 +36,7 @@ const TABS: { key: TabKey; label: string; icon: any }[] = [
   { key: "trust", label: "شارات الثقة", icon: Award },
   { key: "faqs", label: "الأسئلة الشائعة", icon: HelpCircle },
   { key: "gallery", label: "المعرض", icon: ImageIcon },
+  { key: "blog", label: "المدونة", icon: FileText },
 ];
 
 function AdminPage() {
