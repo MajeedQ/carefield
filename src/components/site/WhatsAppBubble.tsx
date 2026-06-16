@@ -14,6 +14,9 @@ export const WhatsAppBubble: React.FC = () => {
   
   const waRaw = String(config?.socialMedia?.whatsapp || '966560098881').trim();
   const defaultText = config?.socialMedia?.whatsappMessage || 'السلام عليكم ورحمة الله وبركاته، أود الاستفسار عن حجز مقعد وتحديد موعد التقييم المجاني في مركز مجال العناية للرعاية النهارية.';
+  const bubbleTag = config?.socialMedia?.whatsappBubbleTag || 'مستشار القبول والتسجيل • متصل الآن';
+  const bubbleText = config?.socialMedia?.whatsappBubbleText || 'أهلاً بك! تواصل معنا مباشرة عبر الواتساب لحجز مقعد المستفيد وجدولة موعد التقييم السلوكي مجاناً في الفروع 💚';
+  const bubbleCta = config?.socialMedia?.whatsappBubbleCta || 'ابدأ المحادثة الآن';
   const waText = encodeURIComponent(defaultText);
   const whatsappUrl = waRaw.startsWith('http')
     ? (waRaw.includes('?') ? waRaw : `${waRaw}?text=${waText}`)
@@ -57,10 +60,10 @@ export const WhatsAppBubble: React.FC = () => {
             {/* Typography and interactive layout content */}
             <div className="space-y-2.5 mt-1">
               <span className="text-[10px] bg-emerald-500/10 text-emerald-700 px-2.5 py-0.5 rounded-full font-black tracking-wide inline-block">
-                مستشار القبول والتسجيل • متصل الآن
+                {bubbleTag}
               </span>
-              <p className="text-xs text-slate-700 leading-relaxed font-bold">
-                أهلاً بك! تواصل معنا مباشرة عبر الواتساب لحجز مقعد المستفيد وجدولة موعد التقييم السلوكي مجاناً في الفروع 💚
+              <p className="text-xs text-slate-700 leading-relaxed font-bold whitespace-pre-line">
+                {bubbleText}
               </p>
               
               {/* Floating CTA links */}
@@ -71,7 +74,7 @@ export const WhatsAppBubble: React.FC = () => {
                 onClick={() => setShowTooltip(false)}
                 className="flex items-center justify-center gap-1.5 w-full bg-[#25d366] hover:bg-[#20ba59] active:scale-98 text-white rounded-xl py-2 text-xs font-black shadow-sm transition-all text-center"
               >
-                <span>ابدأ المحادثة الآن</span>
+                <span>{bubbleCta}</span>
                 <Send className="w-3 h-3" />
               </a>
             </div>
