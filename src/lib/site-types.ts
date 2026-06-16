@@ -20,7 +20,24 @@ export interface GalleryItem {
   category: string;
   thumbnailUrl: string;
   videoUrl?: string;
+  description?: string;
+  externalVideoUrl?: string;
 }
+
+export interface GallerySettings {
+  layout: "grid" | "slider" | "carousel";
+  columns: number;
+  autoplay: boolean;
+  autoplaySpeed: number;
+  showTitles: boolean;
+  showCategories: boolean;
+  showArrows: boolean;
+  showDots: boolean;
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
 
 export interface LeadSubmission {
   id: string;
@@ -46,6 +63,12 @@ export interface BranchInfo {
   mapUrl: string;
   phone: string;
   shareUrl?: string;
+  imageUrl?: string;
+  description?: string;
+  workingHours?: string;
+  servicesList?: string[];
+  features?: string[];
+  directions?: string;
 }
 
 export interface WideBanner {
@@ -144,4 +167,5 @@ export interface AppConfig {
   seo: Record<string, string>;
   footerDescription: string;
   footerCopyright: string;
+  gallerySettings?: GallerySettings;
 }

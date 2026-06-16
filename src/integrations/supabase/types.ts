@@ -121,37 +121,55 @@ export type Database = {
           active: boolean
           address: string
           created_at: string
+          description: string | null
+          directions: string | null
+          features: string[] | null
           id: string
+          image_url: string | null
           map_url: string
           name: string
           phone: string | null
+          services_list: string[] | null
           share_url: string | null
           sort_order: number
           updated_at: string
+          working_hours: string | null
         }
         Insert: {
           active?: boolean
           address?: string
           created_at?: string
+          description?: string | null
+          directions?: string | null
+          features?: string[] | null
           id?: string
+          image_url?: string | null
           map_url?: string
           name: string
           phone?: string | null
+          services_list?: string[] | null
           share_url?: string | null
           sort_order?: number
           updated_at?: string
+          working_hours?: string | null
         }
         Update: {
           active?: boolean
           address?: string
           created_at?: string
+          description?: string | null
+          directions?: string | null
+          features?: string[] | null
           id?: string
+          image_url?: string | null
           map_url?: string
           name?: string
           phone?: string | null
+          services_list?: string[] | null
           share_url?: string | null
           sort_order?: number
           updated_at?: string
+          working_hours?: string | null
         }
         Relationships: []
       }
@@ -190,6 +208,8 @@ export type Database = {
           active: boolean
           category: string | null
           created_at: string
+          description: string | null
+          external_video_url: string | null
           id: string
           kind: string
           sort_order: number
@@ -202,6 +222,8 @@ export type Database = {
           active?: boolean
           category?: string | null
           created_at?: string
+          description?: string | null
+          external_video_url?: string | null
           id?: string
           kind: string
           sort_order?: number
@@ -214,6 +236,8 @@ export type Database = {
           active?: boolean
           category?: string | null
           created_at?: string
+          description?: string | null
+          external_video_url?: string | null
           id?: string
           kind?: string
           sort_order?: number
@@ -399,6 +423,17 @@ export type Database = {
           footer_copyright: string
           footer_description: string
           ga_id: string | null
+          gallery_autoplay: boolean | null
+          gallery_autoplay_speed: number | null
+          gallery_columns: number | null
+          gallery_description: string | null
+          gallery_layout: string | null
+          gallery_show_arrows: boolean | null
+          gallery_show_categories: boolean | null
+          gallery_show_dots: boolean | null
+          gallery_show_titles: boolean | null
+          gallery_subtitle: string | null
+          gallery_title: string | null
           id: string
           instagram: string | null
           linkedin: string | null
@@ -459,6 +494,17 @@ export type Database = {
           footer_copyright?: string
           footer_description?: string
           ga_id?: string | null
+          gallery_autoplay?: boolean | null
+          gallery_autoplay_speed?: number | null
+          gallery_columns?: number | null
+          gallery_description?: string | null
+          gallery_layout?: string | null
+          gallery_show_arrows?: boolean | null
+          gallery_show_categories?: boolean | null
+          gallery_show_dots?: boolean | null
+          gallery_show_titles?: boolean | null
+          gallery_subtitle?: string | null
+          gallery_title?: string | null
           id?: string
           instagram?: string | null
           linkedin?: string | null
@@ -519,6 +565,17 @@ export type Database = {
           footer_copyright?: string
           footer_description?: string
           ga_id?: string | null
+          gallery_autoplay?: boolean | null
+          gallery_autoplay_speed?: number | null
+          gallery_columns?: number | null
+          gallery_description?: string | null
+          gallery_layout?: string | null
+          gallery_show_arrows?: boolean | null
+          gallery_show_categories?: boolean | null
+          gallery_show_dots?: boolean | null
+          gallery_show_titles?: boolean | null
+          gallery_subtitle?: string | null
+          gallery_title?: string | null
           id?: string
           instagram?: string | null
           linkedin?: string | null

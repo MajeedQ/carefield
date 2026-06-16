@@ -4,7 +4,7 @@ import { Save, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { settingsQuery, type DbSettings } from "@/lib/site-content";
 
-const fields: { key: keyof DbSettings; label: string; type?: "text" | "color" | "checkbox" | "textarea" | "select"; options?: string[]; section: string }[] = [
+const fields: { key: keyof DbSettings; label: string; type?: "text" | "color" | "checkbox" | "textarea" | "select" | "number"; options?: string[]; section: string }[] = [
   { key: "primary_color", label: "اللون الرئيسي", type: "color", section: "الثيم" },
   { key: "accent_color", label: "اللون الذهبي", type: "color", section: "الثيم" },
   { key: "background_color", label: "لون الخلفية", type: "color", section: "الثيم" },
@@ -65,6 +65,18 @@ const fields: { key: keyof DbSettings; label: string; type?: "text" | "color" | 
   { key: "tiktok_pixel_id", label: "TikTok Pixel", section: "بيكسلات التسويق" },
 
   { key: "sheets_webhook_url", label: "Google Sheets Webhook (اختياري)", section: "تكامل خارجي" },
+
+  { key: "gallery_title" as any, label: "عنوان قسم المعرض", section: "المعرض" },
+  { key: "gallery_subtitle" as any, label: "العنوان الفرعي للمعرض", section: "المعرض" },
+  { key: "gallery_description" as any, label: "وصف المعرض", type: "textarea", section: "المعرض" },
+  { key: "gallery_layout" as any, label: "نمط العرض (شبكة أو سلايدر)", type: "select", options: ["grid","slider"], section: "المعرض" },
+  { key: "gallery_columns" as any, label: "عدد الأعمدة (1-6)", type: "number", section: "المعرض" },
+  { key: "gallery_autoplay" as any, label: "تشغيل تلقائي للسلايدر", type: "checkbox", section: "المعرض" },
+  { key: "gallery_autoplay_speed" as any, label: "سرعة التشغيل التلقائي (ميلي ثانية)", type: "number", section: "المعرض" },
+  { key: "gallery_show_arrows" as any, label: "إظهار أسهم التنقل في السلايدر", type: "checkbox", section: "المعرض" },
+  { key: "gallery_show_dots" as any, label: "إظهار نقاط التنقل في السلايدر", type: "checkbox", section: "المعرض" },
+  { key: "gallery_show_titles" as any, label: "إظهار عناوين الصور", type: "checkbox", section: "المعرض" },
+  { key: "gallery_show_categories" as any, label: "إظهار تصنيفات الصور", type: "checkbox", section: "المعرض" },
 ];
 
 export function CmsSettings() {
@@ -183,6 +195,13 @@ export function CmsSettings() {
                     >
                       {f.options!.map((o) => <option key={o} value={o}>{o}</option>)}
                     </select>
+                  ) : f.type === "number" ? (
+                    <input
+                      type="number"
+                      value={v ?? ""}
+                      onChange={(e) => setDraft({ ...draft, [f.key]: e.target.value === "" ? null : Number(e.target.value) })}
+                      className="w-full rounded-lg border border-slate-200 px-3 py-2"
+                    />
                   ) : (
                     <input
                       type="text"
