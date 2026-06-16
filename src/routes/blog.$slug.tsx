@@ -8,12 +8,61 @@ import { blogPostBySlugQuery } from "@/lib/blog";
 import { Calendar, ArrowRight, User } from "lucide-react";
 
 export const Route = createFileRoute("/blog/$slug")({
-  head: ({ params }) => ({
-    meta: [
-      { title: `${params.slug} | مدونة مركز مجال العناية` },
-      { name: "description", content: "مقال من مدونة مركز مجال العناية للرعاية النهارية." },
-    ],
-  }),
+  loader: async ({ context, params }) => {
+    const post = await context.queryClient.ensureQueryData(blogPostBySlugQuery(params.slug));
+    return { post };
+  },
+  head: ({ params, loaderData }) => {
+    const post = loaderData?.post;
+    const url = `https://carefield.lovable.app/blog/${params.slug}`;
+    const title = post?.title
+      ? `${post.title} | مدونة مركز مجال العناية`
+      : `مقال | مدونة مركز مجال العناية`;
+    const description =
+      post?.excerpt?.slice(0, 155) ||
+      "مقالات تربوية وتأهيلية متخصصة من مركز مجال العناية للرعاية النهارية.";
+    const image = post?.cover_image;
+    const meta: any[] = [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: post?.title ?? title },
+      { property: "og:description", content: description },
+      { property: "og:url", content: url },
+      { property: "og:type", content: "article" },
+      { name: "twitter:card", content: image ? "summary_large_image" : "summary" },
+      { name: "twitter:title", content: post?.title ?? title },
+      { name: "twitter:description", content: description },
+    ];
+    if (image) {
+      meta.push({ property: "og:image", content: image });
+      meta.push({ name: "twitter:image", content: image });
+    }
+    if (post?.author) meta.push({ name: "author", content: post.author });
+    const scripts = post
+      ? [
+          {
+            type: "application/ld+json",
+            children: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Article",
+              headline: post.title,
+              description,
+              image: image ? [image] : undefined,
+              datePublished: post.published_at,
+              author: post.author ? { "@type": "Person", name: post.author } : undefined,
+              mainEntityOfPage: { "@type": "WebPage", "@id": url },
+              articleSection: post.category || undefined,
+              keywords: post.tags?.join(", ") || undefined,
+            }),
+          },
+        ]
+      : [];
+    return {
+      meta,
+      links: [{ rel: "canonical", href: url }],
+      scripts,
+    };
+  },
   component: BlogPostPage,
   errorComponent: ({ error }) => (
     <div className="min-h-screen flex items-center justify-center p-6 text-center">
