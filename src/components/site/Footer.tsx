@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { Phone, Mail, Instagram } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
 import { CareFieldLogo } from './CareFieldLogo';
 import { useApp } from '@/context/AppContext';
 
