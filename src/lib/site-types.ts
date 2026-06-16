@@ -167,4 +167,5 @@ export interface AppConfig {
   seo: Record<string, string>;
   footerDescription: string;
   footerCopyright: string;
+  gallerySettings?: GallerySettings;
 }
