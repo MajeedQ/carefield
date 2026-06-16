@@ -1,0 +1,13 @@
+# مركز مجال العناية للرعاية النهارية (Care Field Center)
+
+> مركز رعاية نهارية معتمد بتصنيف A+ في الرياض، السعودية. متخصص في تأهيل ذوي الإعاقة من عمر 12 إلى 45 سنة عبر برامج تعديل السلوك، التخاطب، العلاج الطبيعي والوظيفي، والدمج الأكاديمي.
+
+A licensed day-care and rehabilitation center in Riyadh, Saudi Arabia, serving people with disabilities (ages 12–45). Operates two branches: Dahyat Laban and Al-Nuzha. Provides specialized therapy, transport with chaperones, and free initial assessment.
+
+## Pages
+
+- [الرئيسية / Home](/): Overview of the center, services, branches, gallery, FAQ, and consultation booking form.
+- [من نحن / About](/about): Center's vision, mission, goals, team, and history.
+- [خدماتنا / Services](/services): Full list of rehabilitation and therapy services.
+- [فروعنا / Branches](/branches): Locations and contact info for Dahyat Laban and Al-Nuzha branches in Riyadh.
+- [تواصل معنا / Contact](/contact): Contact information, phone numbers, WhatsApp, and email.
