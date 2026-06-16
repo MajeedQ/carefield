@@ -350,8 +350,17 @@ export type Database = {
           linkedin: string | null
           logo_image_url: string | null
           logo_shape: string | null
+          logo_shape_desktop: string | null
+          logo_shape_mobile: string | null
+          logo_shape_tablet: string | null
           logo_show_frame: boolean | null
+          logo_show_frame_desktop: boolean | null
+          logo_show_frame_mobile: boolean | null
+          logo_show_frame_tablet: boolean | null
           logo_size: string | null
+          logo_size_desktop: string | null
+          logo_size_mobile: string | null
+          logo_size_tablet: string | null
           logo_subtitle: string
           logo_text: string
           meta_pixel_id: string | null
@@ -401,8 +410,17 @@ export type Database = {
           linkedin?: string | null
           logo_image_url?: string | null
           logo_shape?: string | null
+          logo_shape_desktop?: string | null
+          logo_shape_mobile?: string | null
+          logo_shape_tablet?: string | null
           logo_show_frame?: boolean | null
+          logo_show_frame_desktop?: boolean | null
+          logo_show_frame_mobile?: boolean | null
+          logo_show_frame_tablet?: boolean | null
           logo_size?: string | null
+          logo_size_desktop?: string | null
+          logo_size_mobile?: string | null
+          logo_size_tablet?: string | null
           logo_subtitle?: string
           logo_text?: string
           meta_pixel_id?: string | null
@@ -452,8 +470,17 @@ export type Database = {
           linkedin?: string | null
           logo_image_url?: string | null
           logo_shape?: string | null
+          logo_shape_desktop?: string | null
+          logo_shape_mobile?: string | null
+          logo_shape_tablet?: string | null
           logo_show_frame?: boolean | null
+          logo_show_frame_desktop?: boolean | null
+          logo_show_frame_mobile?: boolean | null
+          logo_show_frame_tablet?: boolean | null
           logo_size?: string | null
+          logo_size_desktop?: string | null
+          logo_size_mobile?: string | null
+          logo_size_tablet?: string | null
           logo_subtitle?: string
           logo_text?: string
           meta_pixel_id?: string | null
