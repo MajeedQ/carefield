@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BranchesRouteImport } from './routes/branches'
 import { Route as BlogRouteImport } from './routes/blog'
@@ -35,6 +36,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   id: '/robots.txt',
   path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRouteWithChildren
   '/branches': typeof BranchesRoute
   '/contact': typeof ContactRoute
+  '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRouteWithChildren
   '/branches': typeof BranchesRoute
   '/contact': typeof ContactRoute
+  '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -117,6 +125,7 @@ export interface FileRoutesById {
   '/blog': typeof BlogRouteWithChildren
   '/branches': typeof BranchesRoute
   '/contact': typeof ContactRoute
+  '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -132,6 +141,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/branches'
     | '/contact'
+    | '/privacy'
     | '/robots.txt'
     | '/services'
     | '/sitemap.xml'
@@ -145,6 +155,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/branches'
     | '/contact'
+    | '/privacy'
     | '/robots.txt'
     | '/services'
     | '/sitemap.xml'
@@ -159,6 +170,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/branches'
     | '/contact'
+    | '/privacy'
     | '/robots.txt'
     | '/services'
     | '/sitemap.xml'
@@ -174,6 +186,7 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRouteWithChildren
   BranchesRoute: typeof BranchesRoute
   ContactRoute: typeof ContactRoute
+  PrivacyRoute: typeof PrivacyRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -200,6 +213,13 @@ declare module '@tanstack/react-router' {
       path: '/robots.txt'
       fullPath: '/robots.txt'
       preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -297,6 +317,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRouteWithChildren,
   BranchesRoute: BranchesRoute,
   ContactRoute: ContactRoute,
+  PrivacyRoute: PrivacyRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
