@@ -65,6 +65,18 @@ const fields: { key: keyof DbSettings; label: string; type?: "text" | "color" | 
   { key: "tiktok_pixel_id", label: "TikTok Pixel", section: "بيكسلات التسويق" },
 
   { key: "sheets_webhook_url", label: "Google Sheets Webhook (اختياري)", section: "تكامل خارجي" },
+
+  { key: "gallery_title" as any, label: "عنوان قسم المعرض", section: "المعرض" },
+  { key: "gallery_subtitle" as any, label: "العنوان الفرعي للمعرض", section: "المعرض" },
+  { key: "gallery_description" as any, label: "وصف المعرض", type: "textarea", section: "المعرض" },
+  { key: "gallery_layout" as any, label: "نمط العرض (شبكة أو سلايدر)", type: "select", options: ["grid","slider"], section: "المعرض" },
+  { key: "gallery_columns" as any, label: "عدد الأعمدة (1-6)", type: "number", section: "المعرض" },
+  { key: "gallery_autoplay" as any, label: "تشغيل تلقائي للسلايدر", type: "checkbox", section: "المعرض" },
+  { key: "gallery_autoplay_speed" as any, label: "سرعة التشغيل التلقائي (ميلي ثانية)", type: "number", section: "المعرض" },
+  { key: "gallery_show_arrows" as any, label: "إظهار أسهم التنقل في السلايدر", type: "checkbox", section: "المعرض" },
+  { key: "gallery_show_dots" as any, label: "إظهار نقاط التنقل في السلايدر", type: "checkbox", section: "المعرض" },
+  { key: "gallery_show_titles" as any, label: "إظهار عناوين الصور", type: "checkbox", section: "المعرض" },
+  { key: "gallery_show_categories" as any, label: "إظهار تصنيفات الصور", type: "checkbox", section: "المعرض" },
 ];
 
 export function CmsSettings() {
