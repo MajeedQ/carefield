@@ -176,6 +176,23 @@ function AdminPage() {
             ]}
           />
         )}
+        {tab === "blog" && (
+          <CmsCrud
+            table="blog_posts" queryKey="blog_posts" queryOpts={blogPostsQuery(false)}
+            title="مقالات المدونة" primary="title"
+            fields={[
+              { key: "title", label: "عنوان المقال" },
+              { key: "slug", label: "المعرّف بالرابط (إنجليزي بدون مسافات، مثل: speech-therapy-tips)" },
+              { key: "excerpt", label: "ملخص قصير", type: "textarea" },
+              { key: "cover_image", label: "صورة الغلاف", type: "image" },
+              { key: "category", label: "التصنيف (مثل: تأهيل، تخاطب، أسرة)" },
+              { key: "author", label: "اسم الكاتب" },
+              { key: "tags", label: "الوسوم", type: "list" },
+              { key: "content", label: "المحتوى الكامل (يدعم HTML أو نص بفقرات)", type: "textarea" },
+              { key: "published", label: "منشور للعامة", type: "checkbox" },
+            ]}
+          />
+        )}
       </main>
     </div>
   );
