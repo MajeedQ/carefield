@@ -37,13 +37,7 @@ export interface GallerySettings {
   subtitle: string;
   description: string;
 }
-  id: string;
-  type: "image" | "video";
-  title: string;
-  category: string;
-  thumbnailUrl: string;
-  videoUrl?: string;
-}
+
 
 export interface LeadSubmission {
   id: string;
