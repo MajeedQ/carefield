@@ -174,6 +174,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       seo: (s as any).seo ?? {},
       footerDescription: (s as any).footer_description ?? "",
       footerCopyright: (s as any).footer_copyright ?? "",
+      gallerySettings: {
+        layout: ((s as any).gallery_layout as any) ?? "grid",
+        columns: (s as any).gallery_columns ?? 4,
+        autoplay: (s as any).gallery_autoplay !== false,
+        autoplaySpeed: (s as any).gallery_autoplay_speed ?? 4000,
+        showTitles: (s as any).gallery_show_titles !== false,
+        showCategories: (s as any).gallery_show_categories !== false,
+        showArrows: (s as any).gallery_show_arrows !== false,
+        showDots: (s as any).gallery_show_dots !== false,
+        title: (s as any).gallery_title ?? "معرض الصور والفيديو المتكامل",
+        subtitle: (s as any).gallery_subtitle ?? "حياتنا اليومية",
+        description: (s as any).gallery_description ?? "شاهد بيئة أبطالنا وحياتهم التأهيلية اليومية الفعالة.",
+      },
     };
   }, [s, branches, gallery, heroSlides, trust, services, faqs, wide, stats]);
 
