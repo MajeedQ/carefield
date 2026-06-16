@@ -33,11 +33,10 @@ export const LeadForm: React.FC<LeadFormProps> = ({
   const [phone, setPhone] = useState('');
   const [district, setDistrict] = useState('');
   const [ageOfBeneficiary, setAgeOfBeneficiary] = useState('');
-  
+  const navigate = useNavigate();
+
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [ticketId, setTicketId] = useState('');
 
   // Sync preselected service from modal clicks (keep internally as tracking context)
   useEffect(() => {
