@@ -88,6 +88,15 @@ export interface ThemeConfig {
   logoSize?: "sm" | "md" | "lg" | "xl";
   logoShape?: "circle" | "rounded" | "square";
   logoShowFrame?: boolean;
+  logoSizeMobile?: "sm" | "md" | "lg" | "xl";
+  logoSizeTablet?: "sm" | "md" | "lg" | "xl";
+  logoSizeDesktop?: "sm" | "md" | "lg" | "xl";
+  logoShapeMobile?: "circle" | "rounded" | "square";
+  logoShapeTablet?: "circle" | "rounded" | "square";
+  logoShapeDesktop?: "circle" | "rounded" | "square";
+  logoShowFrameMobile?: boolean | null;
+  logoShowFrameTablet?: boolean | null;
+  logoShowFrameDesktop?: boolean | null;
 }
 
 export interface AboutSectionData {

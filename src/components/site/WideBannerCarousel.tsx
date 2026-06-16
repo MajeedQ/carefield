@@ -71,21 +71,21 @@ export const WideBannerCarousel: React.FC = () => {
   };
 
   if (banners.length === 0) {
+    // Hide the empty-state from public visitors — only admins see the call to add a banner
+    if (!isAdminMode) return null;
     return (
       <div className="w-full bg-[#f0f4ff] border-y border-blue-100 py-12 px-4 text-center">
         <div className="max-w-md mx-auto flex flex-col items-center gap-4">
           <Calendar className="w-12 h-12 text-[#002c6d] opacity-40 animate-pulse" />
           <h3 className="text-lg font-bold text-[#002c6d]">لا توجد بانرات ترويجية عريضة نشطة حالياً</h3>
           <p className="text-xs text-[#434651]">يمكنك إضافة بنرات عريضة أعلى الصفحة لتعريف زوارك بالمستجدات بدعم كامل للصور وروابط التوجيه.</p>
-          {isAdminMode && (
-            <button
-              onClick={() => setShowAddModal(true)}
-              className="inline-flex items-center gap-2 bg-[#002c6d] text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-[#1a438d] transition-all"
-            >
-              <Plus className="w-4 h-4" />
-              <span>إضافة بانر عريض الآن</span>
-            </button>
-          )}
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="inline-flex items-center gap-2 bg-[#002c6d] text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-[#1a438d] transition-all"
+          >
+            <Plus className="w-4 h-4" />
+            <span>إضافة بانر عريض الآن</span>
+          </button>
         </div>
         {renderModal()}
       </div>
