@@ -195,6 +195,13 @@ export function CmsSettings() {
                     >
                       {f.options!.map((o) => <option key={o} value={o}>{o}</option>)}
                     </select>
+                  ) : f.type === "number" ? (
+                    <input
+                      type="number"
+                      value={v ?? ""}
+                      onChange={(e) => setDraft({ ...draft, [f.key]: e.target.value === "" ? null : Number(e.target.value) })}
+                      className="w-full rounded-lg border border-slate-200 px-3 py-2"
+                    />
                   ) : (
                     <input
                       type="text"
