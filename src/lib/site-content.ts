@@ -23,6 +23,8 @@ export type DbGalleryItem = {
   category: string | null;
   url: string;
   thumbnail_url: string | null;
+  description?: string | null;
+  external_video_url?: string | null;
   sort_order: number;
   active: boolean;
 };
