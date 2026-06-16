@@ -149,10 +149,16 @@ function AdminPage() {
             title="الفروع" primary="name"
             fields={[
               { key: "name", label: "اسم الفرع" },
-              { key: "address", label: "العنوان", type: "textarea" },
+              { key: "address", label: "العنوان التفصيلي", type: "textarea" },
+              { key: "image_url", label: "صورة واجهة الفرع", type: "image" },
+              { key: "description", label: "وصف الفرع وخصائصه", type: "textarea" },
+              { key: "working_hours", label: "ساعات العمل (مثل: الأحد - الخميس 7ص - 4م)" },
+              { key: "services_list", label: "الخدمات المقدمة في الفرع", type: "list" },
+              { key: "features", label: "مميزات الفرع (مرافق، تجهيزات)", type: "list" },
+              { key: "directions", label: "تعليمات الوصول والمعالم القريبة", type: "textarea" },
+              { key: "phone", label: "هاتف الفرع المباشر" },
               { key: "map_url", label: "رابط خريطة Google Maps embed" },
               { key: "share_url", label: "رابط المشاركة (maps.app.goo.gl)" },
-              { key: "phone", label: "هاتف الفرع" },
             ]}
           />
         )}
