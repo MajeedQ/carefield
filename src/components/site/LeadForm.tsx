@@ -16,40 +16,6 @@ interface LeadFormProps {
   onNewInquiryAdded: () => void;
 }
 
-const containerVariants: any = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.05,
-    },
-  },
-  exit: {
-    opacity: 0,
-    scale: 0.95,
-    transition: { duration: 0.3, ease: 'easeIn' }
-  }
-};
-
-const itemVariants: any = {
-  hidden: { opacity: 0, y: 15 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { type: 'spring', stiffness: 120, damping: 14 }
-  }
-};
-
-const checkmarkVariants: any = {
-  hidden: { scale: 0, rotate: -30, opacity: 0 },
-  visible: {
-    scale: 1,
-    rotate: 0,
-    opacity: 1,
-    transition: { type: 'spring', stiffness: 180, damping: 10, delay: 0.15 }
-  }
-};
 
 export const LeadForm: React.FC<LeadFormProps> = ({ 
   preselectedService, 
