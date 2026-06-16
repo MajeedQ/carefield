@@ -14,6 +14,9 @@ export const WhatsAppBubble: React.FC = () => {
   
   const waRaw = String(config?.socialMedia?.whatsapp || '966560098881').trim();
   const defaultText = config?.socialMedia?.whatsappMessage || 'السلام عليكم ورحمة الله وبركاته، أود الاستفسار عن حجز مقعد وتحديد موعد التقييم المجاني في مركز مجال العناية للرعاية النهارية.';
+  const bubbleTag = config?.socialMedia?.whatsappBubbleTag || 'مستشار القبول والتسجيل • متصل الآن';
+  const bubbleText = config?.socialMedia?.whatsappBubbleText || 'أهلاً بك! تواصل معنا مباشرة عبر الواتساب لحجز مقعد المستفيد وجدولة موعد التقييم السلوكي مجاناً في الفروع 💚';
+  const bubbleCta = config?.socialMedia?.whatsappBubbleCta || 'ابدأ المحادثة الآن';
   const waText = encodeURIComponent(defaultText);
   const whatsappUrl = waRaw.startsWith('http')
     ? (waRaw.includes('?') ? waRaw : `${waRaw}?text=${waText}`)
