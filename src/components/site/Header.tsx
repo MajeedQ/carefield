@@ -131,20 +131,30 @@ export const Header: React.FC = () => {
           <nav className="flex items-center justify-start md:justify-center overflow-x-auto scrollbar-none py-1.5 md:py-2.5 gap-2 md:gap-8 text-right font-sans">
             {navItems.map((item) => {
               const IconComponent = item.icon;
-              const isActive = activePage === item.id;
+              const isActive = item.id === 'blog' ? pathname.startsWith('/blog') : activePage === item.id;
+              const cls = `flex items-center gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-xl text-xs md:text-sm font-black transition-all cursor-pointer whitespace-nowrap group shrink-0 ${
+                isActive
+                  ? 'bg-white text-[#002c6d] shadow-sm scale-102'
+                  : 'text-[#e2eafc] hover:text-white hover:bg-white/10'
+              }`;
+              const iconCls = `w-3.5 h-3.5 md:w-4 md:h-4 transition-colors ${
+                isActive ? 'text-[#775a19]' : 'text-slate-300 group-hover:text-white'
+              }`;
+              if (item.id === 'blog') {
+                return (
+                  <Link key={item.id} to={item.to} className={cls} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                    <IconComponent className={iconCls} />
+                    <span>{item.label}</span>
+                  </Link>
+                );
+              }
               return (
                 <button
                   key={item.id}
-                  onClick={() => handlePageChange(item.id)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-xl text-xs md:text-sm font-black transition-all cursor-pointer whitespace-nowrap group shrink-0 ${
-                    isActive
-                      ? 'bg-white text-[#002c6d] shadow-sm scale-102'
-                      : 'text-[#e2eafc] hover:text-white hover:bg-white/10'
-                  }`}
+                  onClick={() => handlePageChange(item.id as 'home' | 'about' | 'services' | 'branches' | 'contact')}
+                  className={cls}
                 >
-                  <IconComponent className={`w-3.5 h-3.5 md:w-4 md:h-4 transition-colors ${
-                    isActive ? 'text-[#775a19]' : 'text-slate-300 group-hover:text-white'
-                  }`} />
+                  <IconComponent className={iconCls} />
                   <span>{item.label}</span>
                 </button>
               );
