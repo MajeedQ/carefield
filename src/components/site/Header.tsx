@@ -4,12 +4,14 @@
  */
 
 import React from 'react';
-import { Phone, MapPin, Home, Award, Activity, Compass, Mail } from 'lucide-react';
+import { Phone, MapPin, Home, Award, Activity, Compass, Mail, BookOpen } from 'lucide-react';
+import { Link, useRouterState } from '@tanstack/react-router';
 import { CareFieldLogo } from './CareFieldLogo';
 import { useApp } from '@/context/AppContext';
 
 export const Header: React.FC = () => {
   const { config, activePage, setActivePage } = useApp();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const waRaw = String(config.socialMedia.whatsapp || '966560098881').trim();
   const waText = encodeURIComponent(config.socialMedia.whatsappMessage || '');
   const whatsappUrl = waRaw.startsWith('http')
@@ -17,17 +19,19 @@ export const Header: React.FC = () => {
     : `https://wa.me/${waRaw.replace(/\+/g, '')}${waText ? `?text=${waText}` : ''}`;
 
   const navItems = [
-    { id: 'home' as const, label: 'الرئيسية', icon: Home },
-    { id: 'about' as const, label: 'من نحن', icon: Award },
-    { id: 'services' as const, label: 'خدماتنا', icon: Activity },
-    { id: 'branches' as const, label: 'فروعنا', icon: Compass },
-    { id: 'contact' as const, label: 'تواصل معنا', icon: Mail },
+    { id: 'home' as const, label: 'الرئيسية', icon: Home, to: '/' },
+    { id: 'about' as const, label: 'من نحن', icon: Award, to: '/about' },
+    { id: 'services' as const, label: 'خدماتنا', icon: Activity, to: '/services' },
+    { id: 'branches' as const, label: 'فروعنا', icon: Compass, to: '/branches' },
+    { id: 'blog' as const, label: 'المدونة', icon: BookOpen, to: '/blog' },
+    { id: 'contact' as const, label: 'تواصل معنا', icon: Mail, to: '/contact' },
   ];
 
   const handlePageChange = (pageId: 'home' | 'about' | 'services' | 'branches' | 'contact') => {
     setActivePage(pageId);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
 
   return (
     <header id="main-header" className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-blue-50/50 shadow-[0_4px_24px_-4px_rgba(0,44,109,0.03)] transition-all duration-300">
