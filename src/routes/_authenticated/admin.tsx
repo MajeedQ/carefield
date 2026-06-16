@@ -13,13 +13,14 @@ import {
   servicesQuery, faqsQuery, branchesQuery, heroSlidesQuery,
   trustBadgesQuery, wideBannersQuery, heroStatsQuery,
 } from "@/lib/site-content";
+import { blogPostsQuery } from "@/lib/blog";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({ meta: [{ title: "لوحة التحكم - مركز مجال العناية" }] }),
   component: AdminPage,
 });
 
-type TabKey = "settings" | "homepage" | "seo" | "leads" | "hero" | "stats" | "wide" | "banners" | "services" | "branches" | "trust" | "faqs" | "gallery";
+type TabKey = "settings" | "homepage" | "seo" | "leads" | "hero" | "stats" | "wide" | "banners" | "services" | "branches" | "trust" | "faqs" | "gallery" | "blog";
 
 const TABS: { key: TabKey; label: string; icon: any }[] = [
   { key: "settings", label: "الإعدادات العامة", icon: Settings },
