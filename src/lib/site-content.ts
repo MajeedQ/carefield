@@ -90,6 +90,12 @@ export type DbBranch = {
   map_url: string;
   share_url: string | null;
   phone: string | null;
+  image_url?: string | null;
+  description?: string | null;
+  working_hours?: string | null;
+  services_list?: string[] | null;
+  features?: string[] | null;
+  directions?: string | null;
   sort_order: number;
   active: boolean;
 };
