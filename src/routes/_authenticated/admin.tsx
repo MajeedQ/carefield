@@ -13,13 +13,14 @@ import {
   servicesQuery, faqsQuery, branchesQuery, heroSlidesQuery,
   trustBadgesQuery, wideBannersQuery, heroStatsQuery,
 } from "@/lib/site-content";
+import { blogPostsQuery } from "@/lib/blog";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({ meta: [{ title: "لوحة التحكم - مركز مجال العناية" }] }),
   component: AdminPage,
 });
 
-type TabKey = "settings" | "homepage" | "seo" | "leads" | "hero" | "stats" | "wide" | "banners" | "services" | "branches" | "trust" | "faqs" | "gallery";
+type TabKey = "settings" | "homepage" | "seo" | "leads" | "hero" | "stats" | "wide" | "banners" | "services" | "branches" | "trust" | "faqs" | "gallery" | "blog";
 
 const TABS: { key: TabKey; label: string; icon: any }[] = [
   { key: "settings", label: "الإعدادات العامة", icon: Settings },
@@ -35,6 +36,7 @@ const TABS: { key: TabKey; label: string; icon: any }[] = [
   { key: "trust", label: "شارات الثقة", icon: Award },
   { key: "faqs", label: "الأسئلة الشائعة", icon: HelpCircle },
   { key: "gallery", label: "المعرض", icon: ImageIcon },
+  { key: "blog", label: "المدونة", icon: FileText },
 ];
 
 function AdminPage() {
@@ -171,6 +173,23 @@ function AdminPage() {
             fields={[
               { key: "question", label: "السؤال" },
               { key: "answer", label: "الجواب", type: "textarea" },
+            ]}
+          />
+        )}
+        {tab === "blog" && (
+          <CmsCrud
+            table="blog_posts" queryKey="blog_posts" queryOpts={blogPostsQuery(false)}
+            title="مقالات المدونة" primary="title"
+            fields={[
+              { key: "title", label: "عنوان المقال" },
+              { key: "slug", label: "المعرّف بالرابط (إنجليزي بدون مسافات، مثل: speech-therapy-tips)" },
+              { key: "excerpt", label: "ملخص قصير", type: "textarea" },
+              { key: "cover_image", label: "صورة الغلاف", type: "image" },
+              { key: "category", label: "التصنيف (مثل: تأهيل، تخاطب، أسرة)" },
+              { key: "author", label: "اسم الكاتب" },
+              { key: "tags", label: "الوسوم", type: "list" },
+              { key: "content", label: "المحتوى الكامل (يدعم HTML أو نص بفقرات)", type: "textarea" },
+              { key: "published", label: "منشور للعامة", type: "checkbox" },
             ]}
           />
         )}

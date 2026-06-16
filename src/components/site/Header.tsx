@@ -4,12 +4,14 @@
  */
 
 import React from 'react';
-import { Phone, MapPin, Home, Award, Activity, Compass, Mail } from 'lucide-react';
+import { Phone, MapPin, Home, Award, Activity, Compass, Mail, BookOpen } from 'lucide-react';
+import { Link, useRouterState } from '@tanstack/react-router';
 import { CareFieldLogo } from './CareFieldLogo';
 import { useApp } from '@/context/AppContext';
 
 export const Header: React.FC = () => {
   const { config, activePage, setActivePage } = useApp();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const waRaw = String(config.socialMedia.whatsapp || '966560098881').trim();
   const waText = encodeURIComponent(config.socialMedia.whatsappMessage || '');
   const whatsappUrl = waRaw.startsWith('http')
@@ -17,17 +19,19 @@ export const Header: React.FC = () => {
     : `https://wa.me/${waRaw.replace(/\+/g, '')}${waText ? `?text=${waText}` : ''}`;
 
   const navItems = [
-    { id: 'home' as const, label: 'الرئيسية', icon: Home },
-    { id: 'about' as const, label: 'من نحن', icon: Award },
-    { id: 'services' as const, label: 'خدماتنا', icon: Activity },
-    { id: 'branches' as const, label: 'فروعنا', icon: Compass },
-    { id: 'contact' as const, label: 'تواصل معنا', icon: Mail },
+    { id: 'home' as const, label: 'الرئيسية', icon: Home, to: '/' },
+    { id: 'about' as const, label: 'من نحن', icon: Award, to: '/about' },
+    { id: 'services' as const, label: 'خدماتنا', icon: Activity, to: '/services' },
+    { id: 'branches' as const, label: 'فروعنا', icon: Compass, to: '/branches' },
+    { id: 'blog' as const, label: 'المدونة', icon: BookOpen, to: '/blog' },
+    { id: 'contact' as const, label: 'تواصل معنا', icon: Mail, to: '/contact' },
   ];
 
   const handlePageChange = (pageId: 'home' | 'about' | 'services' | 'branches' | 'contact') => {
     setActivePage(pageId);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
 
   return (
     <header id="main-header" className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-blue-50/50 shadow-[0_4px_24px_-4px_rgba(0,44,109,0.03)] transition-all duration-300">
@@ -127,20 +131,30 @@ export const Header: React.FC = () => {
           <nav className="flex items-center justify-start md:justify-center overflow-x-auto scrollbar-none py-1.5 md:py-2.5 gap-2 md:gap-8 text-right font-sans">
             {navItems.map((item) => {
               const IconComponent = item.icon;
-              const isActive = activePage === item.id;
+              const isActive = item.id === 'blog' ? pathname.startsWith('/blog') : activePage === item.id;
+              const cls = `flex items-center gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-xl text-xs md:text-sm font-black transition-all cursor-pointer whitespace-nowrap group shrink-0 ${
+                isActive
+                  ? 'bg-white text-[#002c6d] shadow-sm scale-102'
+                  : 'text-[#e2eafc] hover:text-white hover:bg-white/10'
+              }`;
+              const iconCls = `w-3.5 h-3.5 md:w-4 md:h-4 transition-colors ${
+                isActive ? 'text-[#775a19]' : 'text-slate-300 group-hover:text-white'
+              }`;
+              if (item.id === 'blog') {
+                return (
+                  <Link key={item.id} to={item.to} className={cls} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+                    <IconComponent className={iconCls} />
+                    <span>{item.label}</span>
+                  </Link>
+                );
+              }
               return (
                 <button
                   key={item.id}
-                  onClick={() => handlePageChange(item.id)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 md:px-4 md:py-2 rounded-xl text-xs md:text-sm font-black transition-all cursor-pointer whitespace-nowrap group shrink-0 ${
-                    isActive
-                      ? 'bg-white text-[#002c6d] shadow-sm scale-102'
-                      : 'text-[#e2eafc] hover:text-white hover:bg-white/10'
-                  }`}
+                  onClick={() => handlePageChange(item.id as 'home' | 'about' | 'services' | 'branches' | 'contact')}
+                  className={cls}
                 >
-                  <IconComponent className={`w-3.5 h-3.5 md:w-4 md:h-4 transition-colors ${
-                    isActive ? 'text-[#775a19]' : 'text-slate-300 group-hover:text-white'
-                  }`} />
+                  <IconComponent className={iconCls} />
                   <span>{item.label}</span>
                 </button>
               );

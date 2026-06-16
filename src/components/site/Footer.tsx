@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { Phone, Mail, Instagram } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
 import { CareFieldLogo } from './CareFieldLogo';
 import { useApp } from '@/context/AppContext';
 
@@ -164,8 +165,19 @@ export const Footer: React.FC = () => {
 
         </div>
 
+        {/* Legal links */}
+        <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] font-bold text-[#002c6d] mt-3" aria-label="روابط قانونية">
+          <Link to="/privacy" className="hover:underline">سياسة الخصوصية</Link>
+          <span className="text-slate-300">•</span>
+          <Link to="/terms" className="hover:underline">شروط الاستخدام</Link>
+          <span className="text-slate-300">•</span>
+          <Link to="/blog" className="hover:underline">المدونة</Link>
+          <span className="text-slate-300">•</span>
+          <Link to="/contact" className="hover:underline">تواصل معنا</Link>
+        </nav>
+
         {/* Footer legalities */}
-        <p className="text-[11px] text-[#434651]/80 mt-4 leading-normal">
+        <p className="text-[11px] text-[#434651]/80 mt-2 leading-normal">
           {config.footerCopyright || `© ${new Date().getFullYear()} مركز مجال العناية للرعاية النهارية. جميع الحقوق محفوظة ومسجلة بوزارة الموارد البشرية.`}
         </p>
       </div>

@@ -45,7 +45,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
             transition={{ type: "spring", duration: 0.5 }}
-            className="inline-block w-full max-w-2xl overflow-hidden text-right align-bottom bg-white rounded-2xl shadow-xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg md:max-w-xl lg:max-w-2xl"
+            className="relative z-10 inline-block w-full max-w-2xl overflow-hidden text-right align-bottom bg-white rounded-2xl shadow-2xl transition-all transform sm:my-8 sm:align-middle sm:max-w-lg md:max-w-xl lg:max-w-2xl"
           >
             {/* Top gold bar matching premium theme */}
             <div className="h-2 bg-[#775a19]" />
@@ -79,13 +79,13 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 {/* Long detailed description */}
                 <div>
                   <h4 className="font-bold text-[#002c6d] text-base mb-2">عن الخدمة</h4>
-                  <p className="text-[#434651] text-[15px] leading-relaxed font-light">
+                  <p className="text-[#434651] text-[15px] leading-relaxed">
                     {service.detailedDescription}
                   </p>
                 </div>
 
                 {/* Practical Quick Stats */}
-                <div className="grid grid-cols-2 gap-4 bg-[#f8f9ff] p-4 rounded-xl border border-blue-105-50">
+                <div className="grid grid-cols-2 gap-4 bg-[#f8f9ff] p-4 rounded-xl border border-blue-100">
                   <div className="flex items-start gap-3">
                     <Calendar className="w-5 h-5 text-[#775a19] shrink-0 mt-0.5" />
                     <div>
