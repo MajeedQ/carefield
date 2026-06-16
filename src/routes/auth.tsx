@@ -3,7 +3,13 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/auth")({
-  head: () => ({ meta: [{ title: "تسجيل دخول الأدمن" }] }),
+  head: () => ({
+    meta: [
+      { title: "تسجيل دخول لوحة الإدارة | مركز مجال العناية" },
+      { name: "description", content: "صفحة تسجيل دخول لوحة إدارة مركز مجال العناية للرعاية النهارية. مخصصة لطاقم الإدارة المعتمد فقط لإدارة المحتوى والاستفسارات." },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
   component: AuthPage,
 });
 

@@ -79,15 +79,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "مركز مجال العناية للرعاية النهارية | Care Field Center" },
-      { name: "description", content: "مركز مجال العناية للرعاية النهارية - رعاية وتأهيل ذوي الاحتياجات الخاصة في الرياض. مرخص ومعتمد بتصنيف A+." },
-      { property: "og:title", content: "مركز مجال العناية للرعاية النهارية | Care Field Center" },
-      { property: "og:description", content: "مركز مجال العناية للرعاية النهارية - رعاية وتأهيل ذوي الاحتياجات الخاصة في الرياض. مرخص ومعتمد بتصنيف A+." },
       { property: "og:type", content: "website" },
-      { name: "twitter:title", content: "مركز مجال العناية للرعاية النهارية | Care Field Center" },
-      { name: "twitter:description", content: "مركز مجال العناية للرعاية النهارية - رعاية وتأهيل ذوي الاحتياجات الخاصة في الرياض. مرخص ومعتمد بتصنيف A+." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/itzfLE5ayhdc9GY4KCUw6DWON6k1/social-images/social-1781455913680-شعر_مفرع__-_Edited.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/itzfLE5ayhdc9GY4KCUw6DWON6k1/social-images/social-1781455913680-شعر_مفرع__-_Edited.webp" },
+      { property: "og:site_name", content: "مركز مجال العناية للرعاية النهارية" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
