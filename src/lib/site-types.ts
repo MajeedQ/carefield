@@ -101,6 +101,9 @@ export interface SocialMedia {
   phone2: string;
   whatsapp: string;
   whatsappMessage: string;
+  whatsappBubbleTag?: string;
+  whatsappBubbleText?: string;
+  whatsappBubbleCta?: string;
   twitter: string;
   instagram: string;
   snapchat: string;
