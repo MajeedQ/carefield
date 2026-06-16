@@ -5,7 +5,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, Send, Phone, User, MapPin, Calendar, Loader2 } from 'lucide-react';
+import { Send, Phone, User, MapPin, Calendar, Loader2 } from 'lucide-react';
+import { useNavigate } from '@tanstack/react-router';
 import { useApp } from '@/context/AppContext';
 import { trackEvent } from '@/lib/pixels';
 
