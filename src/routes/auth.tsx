@@ -54,6 +54,24 @@ function AuthPage() {
     }
   };
 
+  const signInWithGoogle = async () => {
+    setError(null);
+    setLoading(true);
+    try {
+      const result = await lovable.auth.signInWithOAuth("google", {
+        redirect_uri: window.location.origin,
+      });
+      if (result.error) throw result.error;
+      if (result.redirected) return;
+      await router.invalidate();
+      navigate({ to: "/admin" });
+    } catch (err: any) {
+      setError(err.message ?? "حدث خطأ أثناء تسجيل الدخول بـ Google");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div dir="rtl" className="min-h-screen flex items-center justify-center bg-[#f8f9ff] px-4 font-sans">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 border border-blue-100">
