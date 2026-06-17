@@ -10,7 +10,7 @@ export const Route = createFileRoute("/privacy")({
       { title: "سياسة الخصوصية | مركز مجال العناية" },
       { name: "description", content: "سياسة خصوصية مركز مجال العناية للرعاية النهارية، متوافقة مع أنظمة وزارة الموارد البشرية والتنمية الاجتماعية بالمملكة العربية السعودية." },
     ],
-    links: [{ rel: "canonical", href: "https://carefield.lovable.app/privacy" }],
+    links: [{ rel: "canonical", href: "https://carefieldc.com/privacy" }],
   }),
   component: PrivacyPage,
 });

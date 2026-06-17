@@ -14,9 +14,9 @@ export const Route = createFileRoute("/blog")({
       { name: "description", content: "مقالات ومحتوى متخصص في الرعاية النهارية، التأهيل السلوكي، علاج النطق، التخاطب وذوي الإعاقة." },
       { property: "og:title", content: "المدونة - مركز مجال العناية" },
       { property: "og:description", content: "مقالات ومحتوى متخصص في الرعاية والتأهيل." },
-      { property: "og:url", content: "https://carefield.lovable.app/blog" },
+      { property: "og:url", content: "https://carefieldc.com/blog" },
     ],
-    links: [{ rel: "canonical", href: "https://carefield.lovable.app/blog" }],
+    links: [{ rel: "canonical", href: "https://carefieldc.com/blog" }],
   }),
   component: BlogIndex,
 });

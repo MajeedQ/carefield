@@ -13,9 +13,9 @@ export const Route = createFileRoute("/branches")({
       { name: "description", content: "فروع المركز للبنين: ضاحية لبن وحي النزهة - مع مواصلات لكل أحياء الرياض ومرافقين معتمدين." },
       { property: "og:title", content: "فروعنا في الرياض" },
       { property: "og:description", content: "تفضل بزيارتنا في فرعَي ضاحية لبن وحي النزهة." },
-      { property: "og:url", content: "https://carefield.lovable.app/branches" },
+      { property: "og:url", content: "https://carefieldc.com/branches" },
     ],
-    links: [{ rel: "canonical", href: "https://carefield.lovable.app/branches" }],
+    links: [{ rel: "canonical", href: "https://carefieldc.com/branches" }],
   }),
   component: BranchesPage,
 });

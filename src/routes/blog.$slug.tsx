@@ -14,7 +14,7 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   head: ({ params, loaderData }) => {
     const post = loaderData?.post;
-    const url = `https://carefield.lovable.app/blog/${params.slug}`;
+    const url = `https://carefieldc.com/blog/${params.slug}`;
     const title = post?.title
       ? `${post.title} | مدونة مركز مجال العناية`
       : `مقال | مدونة مركز مجال العناية`;

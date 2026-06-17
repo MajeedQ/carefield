@@ -8,7 +8,7 @@ export const Route = createFileRoute("/robots.txt")({
 Allow: /
 Disallow: /admin
 Disallow: /auth
-Sitemap: https://carefield.lovable.app/sitemap.xml
+Sitemap: https://carefieldc.com/sitemap.xml
 `;
         return new Response(txt, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
       },

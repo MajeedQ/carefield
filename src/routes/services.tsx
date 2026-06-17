@@ -16,9 +16,9 @@ export const Route = createFileRoute("/services")({
       { name: "description", content: "تعديل سلوك، علاج تخاطب، علاج طبيعي ووظيفي، دمج أكاديمي، تدريب مهني، أنشطة ترفيهية - جلسات فردية بإشراف نخبة معتمدة." },
       { property: "og:title", content: "خدماتنا التأهيلية" },
       { property: "og:description", content: "برامج تأهيل متخصصة لذوي الإعاقة بإشراف أخصائيين معتمدين." },
-      { property: "og:url", content: "https://carefield.lovable.app/services" },
+      { property: "og:url", content: "https://carefieldc.com/services" },
     ],
-    links: [{ rel: "canonical", href: "https://carefield.lovable.app/services" }],
+    links: [{ rel: "canonical", href: "https://carefieldc.com/services" }],
   }),
   component: ServicesPage,
 });
