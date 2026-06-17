@@ -4,6 +4,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 
 export const Route = createFileRoute("/auth")({
+  validateSearch: (s: Record<string, unknown>) => ({
+    reason: typeof s.reason === "string" ? s.reason : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "تسجيل دخول لوحة الإدارة | مركز مجال العناية" },
@@ -17,17 +20,23 @@ export const Route = createFileRoute("/auth")({
 function AuthPage() {
   const navigate = useNavigate();
   const router = useRouter();
+  const { reason } = Route.useSearch();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(
+    reason === "no_access"
+      ? "تم تسجيل الدخول لكن لا توجد لديك صلاحية للوصول إلى لوحة التحكم. تواصل مع مدير الموقع."
+      : null,
+  );
 
   useEffect(() => {
+    if (reason === "no_access") return;
     supabase.auth.getUser().then(({ data }) => {
       if (data.user) navigate({ to: "/admin" });
     });
-  }, [navigate]);
+  }, [navigate, reason]);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();

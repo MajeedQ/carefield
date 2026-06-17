@@ -14,7 +14,10 @@ export const Route = createFileRoute("/_authenticated")({
       .eq("role", "admin")
       .maybeSingle();
 
-    if (!roleData) throw redirect({ to: "/" });
+    if (!roleData) {
+      await supabase.auth.signOut();
+      throw redirect({ to: "/auth", search: { reason: "no_access" } as never });
+    }
 
     return { user: data.user };
   },
