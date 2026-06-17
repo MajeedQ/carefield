@@ -10,7 +10,7 @@ export const Route = createFileRoute("/terms")({
       { title: "شروط الاستخدام | مركز مجال العناية" },
       { name: "description", content: "شروط وأحكام استخدام موقع مركز مجال العناية للرعاية النهارية، متوافقة مع أنظمة وزارة الموارد البشرية والتنمية الاجتماعية." },
     ],
-    links: [{ rel: "canonical", href: "https://carefield.lovable.app/terms" }],
+    links: [{ rel: "canonical", href: "https://carefieldc.com/terms" }],
   }),
   component: TermsPage,
 });

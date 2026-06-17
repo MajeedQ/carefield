@@ -14,9 +14,9 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "تعرف على رؤية ورسالة وأهداف مركز مجال العناية - معتمد بتصنيف A+ من وزارة الموارد البشرية لرعاية ذوي الإعاقة بالرياض." },
       { property: "og:title", content: "من نحن — مركز مجال العناية" },
       { property: "og:description", content: "رؤية ورسالة وأهداف مركز رعاية وتأهيل ذوي الإعاقة في الرياض." },
-      { property: "og:url", content: "https://carefield.lovable.app/about" },
+      { property: "og:url", content: "https://carefieldc.com/about" },
     ],
-    links: [{ rel: "canonical", href: "https://carefield.lovable.app/about" }],
+    links: [{ rel: "canonical", href: "https://carefieldc.com/about" }],
   }),
   component: AboutPage,
 });

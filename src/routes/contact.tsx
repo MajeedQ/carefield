@@ -14,9 +14,9 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "احجز موعد كشف وتقييم سلوكي مجاني لطفلك. سيتواصل معك منسق الحالات لترتيب الزيارة." },
       { property: "og:title", content: "تواصل معنا — كشف مجاني" },
       { property: "og:description", content: "احجز موعد الكشف والتقييم المجاني الآن." },
-      { property: "og:url", content: "https://carefield.lovable.app/contact" },
+      { property: "og:url", content: "https://carefieldc.com/contact" },
     ],
-    links: [{ rel: "canonical", href: "https://carefield.lovable.app/contact" }],
+    links: [{ rel: "canonical", href: "https://carefieldc.com/contact" }],
   }),
   component: ContactPage,
 });

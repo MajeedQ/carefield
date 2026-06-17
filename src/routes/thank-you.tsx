@@ -15,9 +15,9 @@ export const Route = createFileRoute("/thank-you")({
       { name: "description", content: "شكراً لثقتك بمركز مجال العناية. تم استلام طلبك وسنتواصل معك خلال 24 ساعة." },
       { property: "og:title", content: "تم استلام طلبك بنجاح | مركز مجال العناية" },
       { property: "og:description", content: "شكراً لثقتك بمركز مجال العناية. تم استلام طلبك وسنتواصل معك خلال 24 ساعة." },
-      { property: "og:url", content: "https://carefield.lovable.app/thank-you" },
+      { property: "og:url", content: "https://carefieldc.com/thank-you" },
     ],
-    links: [{ rel: "canonical", href: "https://carefield.lovable.app/thank-you" }],
+    links: [{ rel: "canonical", href: "https://carefieldc.com/thank-you" }],
   }),
   component: ThankYouPage,
 });
