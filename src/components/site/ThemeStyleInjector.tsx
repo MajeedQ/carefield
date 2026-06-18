@@ -15,8 +15,8 @@ export const ThemeStyleInjector: React.FC = () => {
     injectMarketingPixels({
       ga_id: s.ga_id,
       meta_pixel_id: s.meta_pixel_id,
-      snap_pixel_id: s.snap_pixel_id,
-      tiktok_pixel_id: s.tiktok_pixel_id,
+      snap_pixel_id: s.snap_pixel_id || "418c8228-3960-40f4-b398-3f9f17c5f933",
+      tiktok_pixel_id: s.tiktok_pixel_id || "D8Q3BL3C77U896T4RT80",
     });
   }, [s]);
 
